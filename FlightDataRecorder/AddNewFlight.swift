@@ -65,28 +65,37 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     
     // Save new flight to Core Data
     @IBAction func saveButton(_ sender: Any) {
-        DataArray.addFlight(flightCount: Int(flightCount.text!)!, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
-        
-        // Notify user that flight was saved successfully and Empty all fields
-        let checkAirport = UIAlertController(title: "Action", message: "Flight was successfully added.", preferredStyle: UIAlertControllerStyle.alert)
-        checkAirport.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action: UIAlertAction!) in
-            let count = DataArray.flightData.count + 1
-            self.flightCount.text = String(format: "%04d", count)
-            self.airlineCompanyName.text = ""
-            self.aircraftModel.text = ""
-            self.date.text = ""
-            self.departureAirport.text = ""
-            self.departureAirport.isEnabled = true
-            self.departureAirportLat = 0.00
-            self.departureAirportLng = 0.00
-            self.arrivalAirport.text = ""
-            self.arrivalAirport.isEnabled = true
-            self.arrivalAirportLat = 0.00
-            self.arrivalAirportLng = 0.00
-            self.flightTime.text = ""
-            self.notes.text = "Notes..."
-        }))
-        present(checkAirport, animated: true, completion: nil)
+        if (airlineCompanyName.text != "" && aircraftModel.text != "" && date.text != "" && departureAirport.isEnabled == false &&
+            arrivalAirport.isEnabled == false && flightTime.text != "" && notes.text != "") {
+            DataArray.addFlight(flightCount: Int(flightCount.text!)!, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
+            
+            // Notify user that flight was saved successfully and Empty all fields
+            let checkAirport = UIAlertController(title: "Action", message: "Flight was successfully added.", preferredStyle: UIAlertControllerStyle.alert)
+            checkAirport.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action: UIAlertAction!) in
+                DataArray.loadArray()
+                let count = DataArray.flightData.count + 1
+                self.flightCount.text = String(format: "%04d", count)
+                self.airlineCompanyName.text = ""
+                self.aircraftModel.text = ""
+                self.date.text = ""
+                self.departureAirport.text = ""
+                self.departureAirport.isEnabled = true
+                self.departureAirportLat = 0.00
+                self.departureAirportLng = 0.00
+                self.arrivalAirport.text = ""
+                self.arrivalAirport.isEnabled = true
+                self.arrivalAirportLat = 0.00
+                self.arrivalAirportLng = 0.00
+                self.flightTime.text = ""
+                self.notes.text = "Notes..."
+            }))
+            present(checkAirport, animated: true, completion: nil)
+        }else {
+            let alertController = UIAlertController(title: "Error", message:
+                "Fill all fields before saving", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     // When view is tapped, close keyboard
