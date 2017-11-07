@@ -27,12 +27,13 @@ class FlightDataTable: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DataArray.loadArray()
-        tableView.reloadData()
+        DataArray.loadArray() // Load data from Core Data
+        tableView.reloadData() // Reload tableView Data
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        DataArray.loadArray()
-        tableView.reloadData()
+        DataArray.loadArray() // Load data from Core Data
+        tableView.reloadData() // Reload tableView Data
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,6 +101,7 @@ class FlightDataTable: UITableViewController {
             let airplaneModel = flightDataArray.value(forKeyPath: "aircraftModel")
             let flightTime = flightDataArray.value(forKeyPath: "flightTime")
             let notes = flightDataArray.value(forKeyPath: "notes")
+            
             // Pass data forward to FlightDetailView
             detailSegue.flightCountSegue = flightCount
             detailSegue.airlineCompanyNameSegue = airlineCompanyName as! String
@@ -125,10 +127,3 @@ class FlightDataTable: UITableViewController {
     }
     
 }
-
-
-
-
-
-
-

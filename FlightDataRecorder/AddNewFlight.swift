@@ -32,12 +32,12 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     var arrivalAirportLat: Double!
     var arrivalAirportLng: Double!
     
+    // Structure for GeocodingService JSON Data
     struct GeocodingService:Codable{
         var status:String
         var results:[GeocodingResult]
     }
     
-    // Structures
     struct GeocodingResult:Codable{
         struct Geometry:Codable{
             struct Location:Codable{
@@ -53,8 +53,8 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Write flightCount to textField (number of flight's in array + 1)
-        let count = flightCountSegue + 1
-        flightCount.text = String(format: "%04d", count)
+        let count = flightCountSegue + 1 // Add one to flightCount
+        flightCount.text = String(format: "%04d", count) // Print flightCount value to label
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,10 +63,11 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     
     // Actions
     
+    // Save new flight to Core Data
     @IBAction func saveButton(_ sender: Any) {
         DataArray.addFlight(flightCount: Int(flightCount.text!)!, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
         
-        // Notify user that flight was saved successfully
+        // Notify user that flight was saved successfully and Empty all fields
         let checkAirport = UIAlertController(title: "Action", message: "Flight was successfully added.", preferredStyle: UIAlertControllerStyle.alert)
         checkAirport.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action: UIAlertAction!) in
             let count = DataArray.flightData.count + 1

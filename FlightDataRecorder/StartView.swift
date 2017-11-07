@@ -17,12 +17,12 @@ class StartView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainButton.layer.cornerRadius = 5 // Change FlightData button corner radius
-        //DataArray.loadArray()
+        DataArray.loadArray() // Load Data from Core Data
         flightCount.text = String(format: "%04d", DataArray.flightData.count) // Flight Count
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DataArray.loadArray()
+        DataArray.loadArray() // Load Data from Core Data
         flightCount.text = String(format: "%04d", DataArray.flightData.count) // Flight Count
     }
 

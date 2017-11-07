@@ -11,26 +11,11 @@ import CoreData
 
 var DataArray: FlightDataArray = FlightDataArray()
 
-// Structure for FlightData
-struct flightDataStruct {
-    var flightCount: Int
-    var airlineCompanyName: String
-    var date: String
-    var departureAirportName: String
-    var departureAirportLat: Double
-    var departureAirportLng: Double
-    var arrivalAirportName: String
-    var arrivalAirportLat: Double
-    var arrivalAirportLng: Double
-    var airplaneModel: String
-    var flightTime: String
-    var notes: String
-}
-
 class FlightDataArray: NSObject {
     // FlightData Array
     var flightData: [NSManagedObject] = []
     
+    // AddFlight and save it to CoreData
     func addFlight(flightCount: Int, airlineCompanyName: String!, date: String!, departureAirportName: String!, departureAirportLat: Double!, departureAirportLng: Double!, arrivalAirportName: String!, arrivalAirportLat: Double!, arrivalAirportLng: Double!, airplaneModel: String!, flightTime: String!, notes: String!)
     {
         guard let appDelegate =
@@ -38,11 +23,11 @@ class FlightDataArray: NSObject {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-
+        // Entity
         let entity = NSEntityDescription.entity(forEntityName: "FlightData", in: managedContext)!
-        
+        // FlightData
         let FlightData = NSManagedObject(entity: entity, insertInto: managedContext)
-
+        // Set Data Values
         FlightData.setValue(airlineCompanyName, forKeyPath: "airlineCompanyName")
         FlightData.setValue(date, forKeyPath: "date")
         FlightData.setValue(departureAirportName, forKeyPath: "departureAirportName")
@@ -54,24 +39,26 @@ class FlightDataArray: NSObject {
         FlightData.setValue(airplaneModel, forKeyPath: "aircraftModel")
         FlightData.setValue(flightTime, forKeyPath: "flightTime")
         FlightData.setValue(notes, forKeyPath: "notes")
-
+        
+        // Try to save data
         do {
             try managedContext.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
-    
+    // Load data from CoreData to Array
     func loadArray() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-
         let managedContext = appDelegate.persistentContainer.viewContext
         
+        // Fetch data from FlightDataEntity
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FlightData")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
+        // Sort TableView Descending
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         do {
             flightData = try managedContext.fetch(fetchRequest)
         }catch let error as NSError {
