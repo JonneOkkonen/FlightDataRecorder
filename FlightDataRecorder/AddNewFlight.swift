@@ -191,6 +191,7 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
                             // Save arrivalAirport Coordinates to variables
                             self.arrivalAirportLat = locationLat
                             self.arrivalAirportLng = locationLng
+                            self.AddArrivalAirport()
                         }
                         if airport == "departure" {
                             // Print location name to textField
@@ -200,6 +201,7 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
                             // Save departureAirport Coordinates to variables
                             self.departureAirportLat = locationLat
                             self.departureAirportLng = locationLng
+                            self.AddDepartureAirport()
                         }
                     }))
                     checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -221,5 +223,45 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     // Get Arrival Airport Coordinates when textEditingEnds
     @IBAction func arrivalEditingDidEnd(_ sender: UITextField) {
         getArrivalCoordinates()
+    }
+    
+    // When DepartureAirport is added add pin to map
+    func AddDepartureAirport() {
+        // MapView Configure
+        mapKitView.delegate = self
+        mapKitView.showsScale = true
+        
+        // Departure location Setup
+        
+        // Add source pin to map
+        let sourceAnnotation = MKPointAnnotation()
+        
+        // Departure Airport Point's location and title
+        sourceAnnotation.coordinate = CLLocationCoordinate2D(latitude: departureAirportLat, longitude: departureAirportLng)
+        sourceAnnotation.title = departureAirport.text
+        mapKitView.addAnnotation(sourceAnnotation)
+        
+        // Zoom view to fit both points
+        mapKitView.showAnnotations(mapKitView.annotations, animated: true)
+    }
+    
+    // When ArrivalAirport is added add pin to map
+    func AddArrivalAirport() {
+        // MapView Configure
+        mapKitView.delegate = self
+        mapKitView.showsScale = true
+        
+        // Arrival location Setup
+        
+        // Add destination pin to map
+        let destAnnotation = MKPointAnnotation()
+
+        // Arrival Airport Point's location and title
+        destAnnotation.coordinate = CLLocationCoordinate2D(latitude: arrivalAirportLat, longitude: arrivalAirportLng)
+        destAnnotation.title = arrivalAirport.text
+        mapKitView.addAnnotation(destAnnotation)
+        
+        // Zoom view to fit both points
+        mapKitView.showAnnotations(mapKitView.annotations, animated: true)
     }
 }
