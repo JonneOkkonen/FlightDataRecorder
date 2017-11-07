@@ -1,0 +1,6 @@
+framework module Pods_FlightDataRecorderTests {
+  umbrella header "Pods-FlightDataRecorderTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
