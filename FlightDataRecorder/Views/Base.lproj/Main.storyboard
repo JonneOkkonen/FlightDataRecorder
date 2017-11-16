@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="00f-fW-ddJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="00f-fW-ddJ">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -109,7 +109,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2W-Om-iU5" userLabel="FlightCount">
-                                            <rect key="frame" x="8" y="21" width="42" height="21"/>
+                                            <rect key="frame" x="16" y="24" width="42" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="AAM-rT-ipP"/>
                                                 <constraint firstAttribute="width" constant="42" id="eZ8-Iq-IhC"/>
@@ -119,7 +119,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Airline Company Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLI-wq-a4H">
-                                            <rect key="frame" x="58" y="8" width="176" height="21"/>
+                                            <rect key="frame" x="66" y="11" width="175" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="yvt-CF-0Xh"/>
                                             </constraints>
@@ -127,27 +127,27 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure Airport - Arrival Airport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ynp-WF-0Qt" userLabel="Departure-Arrival">
-                                            <rect key="frame" x="58" y="37" width="176" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure Airport - Arrival Airport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ynp-WF-0Qt" userLabel="Departure-Arrival">
+                                            <rect key="frame" x="66" y="40" width="175" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B747-400" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9B-dM-kpn" userLabel="Airplane Model">
-                                            <rect key="frame" x="242" y="8" width="70" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99h 30min" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Dbc-yT-bOT" userLabel="Flight Duration">
+                                            <rect key="frame" x="242" y="40" width="70" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="S0g-qQ-0KV"/>
-                                                <constraint firstAttribute="height" constant="21" id="bfJ-gG-aKQ"/>
+                                                <constraint firstAttribute="height" constant="21" id="4Hk-Q9-YH9"/>
+                                                <constraint firstAttribute="width" constant="70" id="sJi-ir-jZ7"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99h 30min" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dbc-yT-bOT" userLabel="Flight Duration">
-                                            <rect key="frame" x="242" y="37" width="70" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B747-400" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="O9B-dM-kpn" userLabel="Airplane Model">
+                                            <rect key="frame" x="242" y="11" width="70" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="4Hk-Q9-YH9"/>
-                                                <constraint firstAttribute="width" constant="70" id="sJi-ir-jZ7"/>
+                                                <constraint firstAttribute="width" constant="70" id="S0g-qQ-0KV"/>
+                                                <constraint firstAttribute="height" constant="21" id="bfJ-gG-aKQ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
@@ -157,18 +157,18 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="Dbc-yT-bOT" secondAttribute="trailing" constant="8" id="NQf-vA-AWN"/>
                                         <constraint firstItem="Dbc-yT-bOT" firstAttribute="top" secondItem="O9B-dM-kpn" secondAttribute="bottom" constant="8" id="ScJ-vo-Rp9"/>
-                                        <constraint firstItem="O9B-dM-kpn" firstAttribute="trailing" secondItem="3Qv-bx-uM5" secondAttribute="trailingMargin" id="a9O-c1-vw8"/>
+                                        <constraint firstItem="O9B-dM-kpn" firstAttribute="trailing" secondItem="3Qv-bx-uM5" secondAttribute="trailingMargin" constant="8" id="a9O-c1-vw8"/>
                                         <constraint firstItem="CLI-wq-a4H" firstAttribute="leading" secondItem="j2W-Om-iU5" secondAttribute="trailing" constant="8" id="djx-H5-S2b"/>
                                         <constraint firstItem="CLI-wq-a4H" firstAttribute="top" secondItem="3Qv-bx-uM5" secondAttribute="topMargin" id="eus-CJ-CEz"/>
                                         <constraint firstItem="Ynp-WF-0Qt" firstAttribute="top" secondItem="CLI-wq-a4H" secondAttribute="bottom" constant="8" id="fLo-s5-uac"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="j2W-Om-iU5" secondAttribute="bottom" constant="12.5" id="fxJ-Xv-JXy"/>
-                                        <constraint firstAttribute="bottom" secondItem="Dbc-yT-bOT" secondAttribute="bottom" constant="4.5" id="jFp-sQ-KAX"/>
-                                        <constraint firstItem="Dbc-yT-bOT" firstAttribute="leading" secondItem="Ynp-WF-0Qt" secondAttribute="trailing" constant="8" id="kPi-DS-oMe"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="j2W-Om-iU5" secondAttribute="bottom" constant="7" id="fxJ-Xv-JXy"/>
+                                        <constraint firstAttribute="bottom" secondItem="Dbc-yT-bOT" secondAttribute="bottom" constant="1.5" id="jFp-sQ-KAX"/>
+                                        <constraint firstItem="Dbc-yT-bOT" firstAttribute="leading" secondItem="Ynp-WF-0Qt" secondAttribute="trailing" constant="1" id="kPi-DS-oMe"/>
                                         <constraint firstItem="j2W-Om-iU5" firstAttribute="top" secondItem="3Qv-bx-uM5" secondAttribute="topMargin" constant="13" id="ldr-bW-NOW"/>
-                                        <constraint firstItem="O9B-dM-kpn" firstAttribute="leading" secondItem="CLI-wq-a4H" secondAttribute="trailing" constant="8" id="m3I-sR-2dn"/>
+                                        <constraint firstItem="O9B-dM-kpn" firstAttribute="leading" secondItem="CLI-wq-a4H" secondAttribute="trailing" constant="1" id="m3I-sR-2dn"/>
                                         <constraint firstItem="O9B-dM-kpn" firstAttribute="top" secondItem="3Qv-bx-uM5" secondAttribute="topMargin" id="s3D-xX-naf"/>
                                         <constraint firstItem="Ynp-WF-0Qt" firstAttribute="leading" secondItem="j2W-Om-iU5" secondAttribute="trailing" constant="8" id="uvx-bF-Tj5"/>
-                                        <constraint firstAttribute="bottom" secondItem="Ynp-WF-0Qt" secondAttribute="bottom" constant="4" id="xua-eb-0bG"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ynp-WF-0Qt" secondAttribute="bottom" constant="6.5" id="xua-eb-0bG"/>
                                         <constraint firstItem="j2W-Om-iU5" firstAttribute="leading" secondItem="3Qv-bx-uM5" secondAttribute="leadingMargin" id="z6k-ya-XaC"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -192,7 +192,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n38-wy-wU6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1901" y="133"/>
+            <point key="canvasLocation" x="1899.375" y="132.04225352112675"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uPS-9t-AV8">
@@ -324,6 +324,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="departureEditingDidEnd:" destination="W4O-Y8-gHz" eventType="editingDidEnd" id="Ahp-8s-RM6"/>
+                                                </connections>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrival_icon" translatesAutoresizingMaskIntoConstraints="NO" id="p5K-o0-hLC">
                                                 <rect key="frame" x="8" y="421" width="30" height="30"/>
@@ -340,6 +343,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="arrivalEditingDidEnd:" destination="W4O-Y8-gHz" eventType="editingDidEnd" id="xqt-Wu-hS3"/>
+                                                </connections>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flight_time_icon" translatesAutoresizingMaskIntoConstraints="NO" id="eUi-Yh-Yff">
                                                 <rect key="frame" x="8" y="459" width="30" height="30"/>

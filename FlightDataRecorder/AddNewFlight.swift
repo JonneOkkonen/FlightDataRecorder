@@ -135,7 +135,7 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         timeFormatter.timeStyle = DateFormatter.Style.short
         timeFormatter.dateFormat = "HH:mm"
         let value = timeFormatter.string(from: sender.date)
-        flightTime.text = String(value.characters.prefix(2)) + " h " + String(value.characters.dropFirst(3)) + " min"
+        flightTime.text = String(value.prefix(2)) + " h " + String(value.dropFirst(3)) + " min"
     }
     
     // Get Departure Airport Coordinates from Google Geocode Service and pass them to parser
@@ -191,6 +191,7 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
                             // Save arrivalAirport Coordinates to variables
                             self.arrivalAirportLat = locationLat
                             self.arrivalAirportLng = locationLng
+                            // Add ArrivalAirport pin to map
                             self.AddArrivalAirport()
                         }
                         if airport == "departure" {
@@ -201,9 +202,11 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
                             // Save departureAirport Coordinates to variables
                             self.departureAirportLat = locationLat
                             self.departureAirportLng = locationLng
+                            // Add DepartureAirport pin to map
                             self.AddDepartureAirport()
                         }
                     }))
+                    // Ask user if the airport is correct
                     checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
                         print("AirportChecker: No")
                     }))
