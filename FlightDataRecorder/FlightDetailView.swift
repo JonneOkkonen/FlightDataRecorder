@@ -61,6 +61,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         super.viewDidLoad()
         configureView() // Print segue data to fields
         ConfigureMapView() // Configure MapView
+        mapKitView.layer.cornerRadius = 5 // Change mapKitView corner radius
     }
     
     override func didReceiveMemoryWarning() {

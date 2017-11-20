@@ -55,6 +55,7 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         // Write flightCount to textField (number of flight's in array + 1)
         let count = flightCountSegue + 1 // Add one to flightCount
         flightCount.text = String(format: "%04d", count) // Print flightCount value to label
+        mapKitView.layer.cornerRadius = 5 // Change mapKitView corner radius
     }
     
     override func didReceiveMemoryWarning() {
