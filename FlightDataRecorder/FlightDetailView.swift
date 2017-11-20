@@ -38,6 +38,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     var arrivalAirportLngSegue: Double!
     var flightTimeSegue: String!
     var notesSegue: String!
+    var arrayIndex: Int!
     
     // Structure for GeocodingService JSON Data
     struct GeocodingService:Codable{
@@ -82,8 +83,18 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
             arrivalAirport.isEnabled = false
             flightTime.isEnabled = false
             notes.isEditable = false
+            // Ask user to if he want's to save changes
+            let checkAirport = UIAlertController(title: "Notification", message: "Would you like to save changes?", preferredStyle: UIAlertControllerStyle.alert)
+            checkAirport.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                print("SaveChangesChecker: Yes")
+                self.saveChanges()
+            }))
+            checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("SaveChangesChecker: No")
+            }))
+                present(checkAirport, animated: true, completion: nil)
         }else if airlineCompanyName.isEnabled == false {
-            editButton.title = "Done" // Change button title to Done
+            editButton.title = "Save" // Change button title to Save
             // Change Textfields Enabled state to true
             airlineCompanyName.isEnabled = true
             aircraftModel.isEnabled = true
@@ -271,7 +282,6 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
                             self.ConfigureMapView()
                         }
                     }))
-                    // Ask user if the airport is correct
                     checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
                         print("AirportChecker: No")
                     }))
@@ -291,5 +301,10 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     // Get Arrival Airport Coordinates when textEditingEnds
     @IBAction func arrivalEditingDidEnd(_ sender: UITextField) {
         getArrivalCoordinates()
+    }
+    
+    // Update values to coreData
+    func saveChanges() {
+        DataArray.updateCoreData(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLatSegue, departureAirportLng: departureAirportLngSegue, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLatSegue, arrivalAirportLng: arrivalAirportLngSegue, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
     }
 }

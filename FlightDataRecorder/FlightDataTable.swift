@@ -101,6 +101,7 @@ class FlightDataTable: UITableViewController {
             let airplaneModel = flightDataArray.value(forKeyPath: "aircraftModel")
             let flightTime = flightDataArray.value(forKeyPath: "flightTime")
             let notes = flightDataArray.value(forKeyPath: "notes")
+            let arrayIndex = indexPath?.row
             
             // Pass data forward to FlightDetailView
             detailSegue.flightCountSegue = flightCount
@@ -115,6 +116,7 @@ class FlightDataTable: UITableViewController {
             detailSegue.aircraftModelSegue = airplaneModel as! String
             detailSegue.flightTimeSegue = flightTime as! String
             detailSegue.notesSegue = notes as! String
+            detailSegue.arrayIndex = arrayIndex
         }
         
         // Pass flightCount to addNewFlight
