@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0BC3E8F056F7BAA3EEA8A719 /* Pods_FlightDataRecorderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF7BAB23D6983C6CC4D3BDD /* Pods_FlightDataRecorderUITests.framework */; };
 		3A22CADA1FA8DBD200E27985 /* FlightDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22CAD91FA8DBD200E27985 /* FlightDataArray.swift */; };
 		3A308DE21F795DFC00665F71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A308DE11F795DFC00665F71 /* AppDelegate.swift */; };
 		3A308DE41F795DFC00665F71 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A308DE31F795DFC00665F71 /* StartView.swift */; };
@@ -21,8 +20,6 @@
 		3A4C40C71F966B5600CF03A8 /* KeyboardLayoutConstrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C40C61F966B5600CF03A8 /* KeyboardLayoutConstrain.swift */; };
 		3A5DAC931F966FF1008309A5 /* AddNewFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5DAC921F966FF1008309A5 /* AddNewFlight.swift */; };
 		3AFBD0341F7ACADB009D34E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AFBD0331F7ACADB009D34E8 /* Images.xcassets */; };
-		75ADEF829F1DF2AF9E2C092A /* Pods_FlightDataRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569096CD1FA5E5A1F3AB3F2B /* Pods_FlightDataRecorder.framework */; };
-		AE20B4D5767FCE94E6ED8266 /* Pods_FlightDataRecorderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225553F0A644DEB31AEA48EC /* Pods_FlightDataRecorderTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		225553F0A644DEB31AEA48EC /* Pods_FlightDataRecorderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightDataRecorderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A22CAD91FA8DBD200E27985 /* FlightDataArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDataArray.swift; sourceTree = "<group>"; };
 		3A308DDE1F795DFC00665F71 /* FlightDataRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightDataRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A308DE11F795DFC00665F71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,14 +59,6 @@
 		3A4C40C61F966B5600CF03A8 /* KeyboardLayoutConstrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstrain.swift; sourceTree = "<group>"; };
 		3A5DAC921F966FF1008309A5 /* AddNewFlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddNewFlight.swift; path = FlightDataRecorder/AddNewFlight.swift; sourceTree = SOURCE_ROOT; };
 		3AFBD0331F7ACADB009D34E8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3D6A83E2D37CFC838CB6C83C /* Pods-FlightDataRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightDataRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightDataRecorder/Pods-FlightDataRecorder.debug.xcconfig"; sourceTree = "<group>"; };
-		495463C38535FCC810C520FD /* Pods-FlightDataRecorderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightDataRecorderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlightDataRecorderUITests/Pods-FlightDataRecorderUITests.release.xcconfig"; sourceTree = "<group>"; };
-		569096CD1FA5E5A1F3AB3F2B /* Pods_FlightDataRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightDataRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6BF7BAB23D6983C6CC4D3BDD /* Pods_FlightDataRecorderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightDataRecorderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		85DF6E1A3A0D8FB74F983705 /* Pods-FlightDataRecorderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightDataRecorderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightDataRecorderUITests/Pods-FlightDataRecorderUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		C0221B7F778E0CEE8FCD63C3 /* Pods-FlightDataRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightDataRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlightDataRecorder/Pods-FlightDataRecorder.release.xcconfig"; sourceTree = "<group>"; };
-		CA8E88AD730D83A4FAEFFFA2 /* Pods-FlightDataRecorderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightDataRecorderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightDataRecorderTests/Pods-FlightDataRecorderTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CD8D3951298EC2179B7F4F12 /* Pods-FlightDataRecorderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightDataRecorderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlightDataRecorderTests/Pods-FlightDataRecorderTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75ADEF829F1DF2AF9E2C092A /* Pods_FlightDataRecorder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +73,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE20B4D5767FCE94E6ED8266 /* Pods_FlightDataRecorderTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BC3E8F056F7BAA3EEA8A719 /* Pods_FlightDataRecorderUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +93,6 @@
 				3A308DF81F795DFD00665F71 /* FlightDataRecorderTests */,
 				3A308E031F795DFD00665F71 /* FlightDataRecorderUITests */,
 				3A308DDF1F795DFC00665F71 /* Products */,
-				48B8FD247FF374A9C9F3AD83 /* Pods */,
-				5F8FF4D3A8451944F147DC18 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,29 +151,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		48B8FD247FF374A9C9F3AD83 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3D6A83E2D37CFC838CB6C83C /* Pods-FlightDataRecorder.debug.xcconfig */,
-				C0221B7F778E0CEE8FCD63C3 /* Pods-FlightDataRecorder.release.xcconfig */,
-				CA8E88AD730D83A4FAEFFFA2 /* Pods-FlightDataRecorderTests.debug.xcconfig */,
-				CD8D3951298EC2179B7F4F12 /* Pods-FlightDataRecorderTests.release.xcconfig */,
-				85DF6E1A3A0D8FB74F983705 /* Pods-FlightDataRecorderUITests.debug.xcconfig */,
-				495463C38535FCC810C520FD /* Pods-FlightDataRecorderUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		5F8FF4D3A8451944F147DC18 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				569096CD1FA5E5A1F3AB3F2B /* Pods_FlightDataRecorder.framework */,
-				225553F0A644DEB31AEA48EC /* Pods_FlightDataRecorderTests.framework */,
-				6BF7BAB23D6983C6CC4D3BDD /* Pods_FlightDataRecorderUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,12 +158,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A308E091F795DFD00665F71 /* Build configuration list for PBXNativeTarget "FlightDataRecorder" */;
 			buildPhases = (
-				1C5F6CF36297ADB678B1707C /* [CP] Check Pods Manifest.lock */,
 				3A308DDA1F795DFC00665F71 /* Sources */,
 				3A308DDB1F795DFC00665F71 /* Frameworks */,
 				3A308DDC1F795DFC00665F71 /* Resources */,
-				048F97C33BE2DFA8B4C39530 /* [CP] Embed Pods Frameworks */,
-				0D2E96332ED011414D335DBE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -333,39 +290,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		048F97C33BE2DFA8B4C39530 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FlightDataRecorder/Pods-FlightDataRecorder-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlightDataRecorder/Pods-FlightDataRecorder-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0D2E96332ED011414D335DBE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlightDataRecorder/Pods-FlightDataRecorder-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		14435A1F6EC44DF954D627C3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,24 +303,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlightDataRecorderTests/Pods-FlightDataRecorderTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1C5F6CF36297ADB678B1707C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FlightDataRecorder-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		82F479D4DADE7FADB4EB6F17 /* [CP] Embed Pods Frameworks */ = {
@@ -658,7 +564,6 @@
 		};
 		3A308E0A1F795DFD00665F71 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D6A83E2D37CFC838CB6C83C /* Pods-FlightDataRecorder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -675,7 +580,6 @@
 		};
 		3A308E0B1F795DFD00665F71 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0221B7F778E0CEE8FCD63C3 /* Pods-FlightDataRecorder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -692,7 +596,6 @@
 		};
 		3A308E0D1F795DFD00665F71 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA8E88AD730D83A4FAEFFFA2 /* Pods-FlightDataRecorderTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -710,7 +613,6 @@
 		};
 		3A308E0E1F795DFD00665F71 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD8D3951298EC2179B7F4F12 /* Pods-FlightDataRecorderTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -728,7 +630,6 @@
 		};
 		3A308E101F795DFD00665F71 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 85DF6E1A3A0D8FB74F983705 /* Pods-FlightDataRecorderUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -745,7 +646,6 @@
 		};
 		3A308E111F795DFD00665F71 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 495463C38535FCC810C520FD /* Pods-FlightDataRecorderUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,6 +1,0 @@
-framework module Pods_FlightDataRecorder {
-  umbrella header "Pods-FlightDataRecorder-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import Alamofire
 
 class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -203,90 +202,57 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         return renderer
     }
     
-    // Get Departure Airport Coordinates from Google Geocode Service and pass them to parser
-    func getDepartureCoordinates() {
-        let airportName = departureAirport.text
-        if airportName != nil {
-            let url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + airportName! + "&sensor=true"
-            Alamofire.request(url).responseJSON(completionHandler: {
-                response in
-                self.parseData(JSONData: response.data!, airport: "departure")
-            })
-        }
-    }
-    
-    // Get Arrival Airport Coordinates from Google Geocode Service and pass them to parser
-    func getArrivalCoordinates() {
-        let airportName = arrivalAirport.text
-        if airportName != nil {
-            let url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + airportName! + "&sensor=true"
-            Alamofire.request(url).responseJSON(completionHandler: {
-                response in
-                self.parseData(JSONData: response.data!, airport: "arrival")
-            })
-        }
-    }
-    
-    // Parse JSON Data from Google Geocode Service
-    func parseData(JSONData: Data, airport: String) {
-        let decoder = JSONDecoder()
+    // Get airport coordinates from Apple Geocode Service
+    func getAirportCoordinates(airportName: String, airport: String) {
         do {
-            let obj = try decoder.decode(GeocodingService.self, from: JSONData) // Decode JSON to Structures
-            let status = obj.status // Save JSON status to variable
-            print("GeocodingService Status: \(status)") // Print status to Debug
-            if status == "OK" { // If status 'OK' Continue
-                for result in obj.results{
-                    // Variables for JSON Data
-                    let locationLat = result.geometry.location.lat
-                    let locationLng = result.geometry.location.lng
-                    let address = result.formatted_address
-                    // Print JSON Data to Debug
-                    print("LocationLat: \(locationLat)")
-                    print("LocationLng: \(locationLng)")
-                    print("Address: \(address)")
-                    // Ask user to check airport location
-                    let checkAirport = UIAlertController(title: "Is the airport location correct?", message: "\(address)\nLat: \(locationLat)\n Lng: \(locationLng)", preferredStyle: UIAlertControllerStyle.alert)
-                    checkAirport.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-                        print("AirportChecker: Yes")
-                        if airport == "arrival" {
-                            // Print location name to textField
-                            self.arrivalAirport.text = address
-                            self.arrivalAirportSegue = address
-                            // Disable arrivalAirportField
-                            self.arrivalAirport.isEnabled = false
-                            // Save arrivalAirport Coordinates to variables
-                            self.arrivalAirportLatSegue = locationLat
-                            self.arrivalAirportLngSegue = locationLng
-                            // Clear polyline
-                            self.mapKitView.removeOverlays(self.mapKitView.overlays)
-                            // Clear Pins from map
-                            self.mapKitView.removeAnnotations(self.mapKitView.annotations)
-                            // ConfigureMapView
-                            self.ConfigureMapView()
-                        }
-                        if airport == "departure" {
-                            // Print location name to textField
-                            self.departureAirport.text = address
-                            // Save location name to variable
-                            self.departureAirportSegue = address
-                            // Disable departureAirportField
-                            self.departureAirport.isEnabled = false
-                            // Save departureAirport Coordinates to variables
-                            self.departureAirportLatSegue = locationLat
-                            self.departureAirportLngSegue = locationLng
-                            // Clear polyline
-                            self.mapKitView.removeOverlays(self.mapKitView.overlays)
-                            // Clear Pins from map
-                            self.mapKitView.removeAnnotations(self.mapKitView.annotations)
-                            // ConfigureMapView
-                            self.ConfigureMapView()
-                        }
-                    }))
-                    checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
-                        print("AirportChecker: No")
-                    }))
-                    present(checkAirport, animated: true, completion: nil)
-                }
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(airportName) {
+                placemarks, error in
+                let placemark = placemarks?.first
+                let lat = placemark?.location?.coordinate.latitude
+                let lng = placemark?.location?.coordinate.longitude
+                print("Airport: \(airport) Lat: \(lat!), Lon: \(lng!)")
+                
+                // Ask user to check airport location
+                let checkAirport = UIAlertController(title: "Is the airport location correct?", message: "\(airportName)\nLat: \(lat!)\n Lng: \(lng!)", preferredStyle: UIAlertControllerStyle.alert)
+                checkAirport.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                    print("AirportChecker: Yes")
+                    if airport == "arrival" {
+                        // Print location name to textField
+                        self.arrivalAirport.text = airportName
+                        // Disable arrivalAirportField
+                        self.arrivalAirport.isEnabled = false
+                        // Save arrivalAirport Coordinates to variables
+                        self.arrivalAirportLatSegue = lat
+                        self.arrivalAirportLngSegue = lng
+                        // Clear polyline
+                        self.mapKitView.removeOverlays(self.mapKitView.overlays)
+                        // Clear Pins from map
+                        self.mapKitView.removeAnnotations(self.mapKitView.annotations)
+                        // ConfigureMapView
+                        self.ConfigureMapView()
+                    }
+                    if airport == "departure" {
+                        // Print location name to textField
+                        self.departureAirport.text = airportName
+                        // Disable departureAirportField
+                        self.departureAirport.isEnabled = false
+                        // Save departureAirport Coordinates to variables
+                        self.departureAirportLatSegue = lat
+                        self.departureAirportLngSegue = lng
+                        // Clear polyline
+                        self.mapKitView.removeOverlays(self.mapKitView.overlays)
+                        // Clear Pins from map
+                        self.mapKitView.removeAnnotations(self.mapKitView.annotations)
+                        // ConfigureMapView
+                        self.ConfigureMapView()
+                    }
+                }))
+                // Ask user if the airport is correct
+                checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+                    print("AirportChecker: No")
+                }))
+                self.present(checkAirport, animated: true, completion: nil)
             }
         } catch{
             print("\(error)")
@@ -295,16 +261,28 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     
     // Get Departure Airport Coordinates when textEditingEnds
     @IBAction func departureEditingDidEnd(_ sender: UITextField) {
-        getDepartureCoordinates()
+        getAirportCoordinates(airportName: departureAirport.text!, airport: "departure")
     }
     
     // Get Arrival Airport Coordinates when textEditingEnds
     @IBAction func arrivalEditingDidEnd(_ sender: UITextField) {
-        getArrivalCoordinates()
+        getAirportCoordinates(airportName: arrivalAirport.text!, airport: "arrival")
     }
     
     // Update values to coreData
     func saveChanges() {
-        DataArray.updateCoreData(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLatSegue, departureAirportLng: departureAirportLngSegue, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLatSegue, arrivalAirportLng: arrivalAirportLngSegue, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
+        // Check that fields are filled
+        if (airlineCompanyName.text != "" && aircraftModel.text != "" && date.text != "" &&
+            departureAirport.isEnabled == false && arrivalAirport.isEnabled == false &&
+            flightTime.text != "" && notes.text != "") {
+                    // Save Changes to CoreData
+                    DataArray.updateCoreData(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLatSegue, departureAirportLng: departureAirportLngSegue, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLatSegue, arrivalAirportLng: arrivalAirportLngSegue, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
+        }else {
+            // Show alert to user
+            let alertController = UIAlertController(title: "Error", message:
+                "Fill all fields before saving", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 }
