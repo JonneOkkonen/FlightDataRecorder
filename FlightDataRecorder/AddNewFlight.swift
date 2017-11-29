@@ -31,24 +31,6 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     var departureAirportLng: Double!
     var arrivalAirportLat: Double!
     var arrivalAirportLng: Double!
-    
-    // Structure for GeocodingService JSON Data
-    struct GeocodingService:Codable{
-        var status:String
-        var results:[GeocodingResult]
-    }
-    
-    struct GeocodingResult:Codable{
-        struct Geometry:Codable{
-            struct Location:Codable{
-                let lat:Double
-                let lng:Double
-            }
-            let location:Location
-        }
-        let formatted_address:String
-        let geometry:Geometry
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,10 +78,7 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
             }))
             present(checkAirport, animated: true, completion: nil)
         }else {
-            let alertController = UIAlertController(title: "Error", message:
-                "Fill all fields before saving", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            Core.alertView(message: "Fill all fields before saving", context: self)
         }
     }
     
@@ -145,50 +124,46 @@ class AddNewFlight: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     
     // Get airport coordinates from Apple Geocode Service
     func getAirportCoordinates(airportName: String, airport: String) {
-        do {
-            let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(airportName) {
-                placemarks, error in
-                let placemark = placemarks?.first
-                let lat = placemark?.location?.coordinate.latitude
-                let lng = placemark?.location?.coordinate.longitude
-                print("Airport: \(airport) Lat: \(lat!), Lon: \(lng!)")
-                
-                // Ask user to check airport location
-                let checkAirport = UIAlertController(title: "Is the airport location correct?", message: "\(airportName)\nLat: \(lat!)\n Lng: \(lng!)", preferredStyle: UIAlertControllerStyle.alert)
-                checkAirport.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-                    print("AirportChecker: Yes")
-                    if airport == "arrival" {
-                        // Print location name to textField
-                        self.arrivalAirport.text = airportName
-                        // Disable arrivalAirportField
-                        self.arrivalAirport.isEnabled = false
-                        // Save arrivalAirport Coordinates to variables
-                        self.arrivalAirportLat = lat
-                        self.arrivalAirportLng = lng
-                        // Add ArrivalAirport pin to map
-                        self.AddArrivalAirport()
-                    }
-                    if airport == "departure" {
-                        // Print location name to textField
-                        self.departureAirport.text = airportName
-                        // Disable departureAirportField
-                        self.departureAirport.isEnabled = false
-                        // Save departureAirport Coordinates to variables
-                        self.departureAirportLat = lat
-                        self.departureAirportLng = lng
-                        // Add DepartureAirport pin to map
-                        self.AddDepartureAirport()
-                    }
-                }))
-                // Ask user if the airport is correct
-                checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
-                    print("AirportChecker: No")
-                }))
-                self.present(checkAirport, animated: true, completion: nil)
-            }
-        } catch{
-            print("\(error)")
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(airportName) {
+            placemarks, error in
+            let placemark = placemarks?.first
+            let lat = placemark?.location?.coordinate.latitude
+            let lng = placemark?.location?.coordinate.longitude
+            print("Airport: \(airport) Lat: \(lat!), Lon: \(lng!)")
+            
+            // Ask user to check airport location
+            let checkAirport = UIAlertController(title: "Is the airport location correct?", message: "\(airportName)\nLat: \(lat!)\n Lng: \(lng!)", preferredStyle: UIAlertControllerStyle.alert)
+            checkAirport.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                print("AirportChecker: Yes")
+                if airport == "arrival" {
+                    // Print location name to textField
+                    self.arrivalAirport.text = airportName
+                    // Disable arrivalAirportField
+                    self.arrivalAirport.isEnabled = false
+                    // Save arrivalAirport Coordinates to variables
+                    self.arrivalAirportLat = lat
+                    self.arrivalAirportLng = lng
+                    // Add ArrivalAirport pin to map
+                    self.AddArrivalAirport()
+                }
+                if airport == "departure" {
+                    // Print location name to textField
+                    self.departureAirport.text = airportName
+                    // Disable departureAirportField
+                    self.departureAirport.isEnabled = false
+                    // Save departureAirport Coordinates to variables
+                    self.departureAirportLat = lat
+                    self.departureAirportLng = lng
+                    // Add DepartureAirport pin to map
+                    self.AddDepartureAirport()
+                }
+            }))
+            // Ask user if the airport is correct
+            checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("AirportChecker: No")
+            }))
+            self.present(checkAirport, animated: true, completion: nil)
         }
     }
     
