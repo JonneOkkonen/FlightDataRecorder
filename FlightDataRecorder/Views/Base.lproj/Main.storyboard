@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -77,7 +78,6 @@
                             <constraint firstItem="T2p-bT-roq" firstAttribute="top" secondItem="jCm-Kb-9cK" secondAttribute="bottom" constant="8" id="fcS-Ku-qHF"/>
                             <constraint firstItem="jCm-Kb-9cK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fk8-YX-SjY"/>
                             <constraint firstItem="T2p-bT-roq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fwd-8a-pK2"/>
-                            <constraint firstItem="Fvv-Vp-1aI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uKr-Ua-i8a"/>
                             <constraint firstItem="GdK-VL-ftn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ztT-40-xDC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -112,7 +112,7 @@
                                             <rect key="frame" x="16" y="24" width="42" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="AAM-rT-ipP"/>
-                                                <constraint firstAttribute="width" constant="42" id="eZ8-Iq-IhC"/>
+                                                <constraint firstAttribute="width" secondItem="j2W-Om-iU5" secondAttribute="height" multiplier="2:1" id="xvG-qA-ZKW"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -137,7 +137,7 @@
                                             <rect key="frame" x="242" y="40" width="70" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="4Hk-Q9-YH9"/>
-                                                <constraint firstAttribute="width" constant="70" id="sJi-ir-jZ7"/>
+                                                <constraint firstAttribute="width" secondItem="Dbc-yT-bOT" secondAttribute="height" multiplier="10:3" id="Gtn-zj-lQf"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
@@ -146,7 +146,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B747-400" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="O9B-dM-kpn" userLabel="Airplane Model">
                                             <rect key="frame" x="242" y="11" width="70" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="S0g-qQ-0KV"/>
+                                                <constraint firstAttribute="width" secondItem="O9B-dM-kpn" secondAttribute="height" multiplier="10:3" id="Hxf-sQ-Tg9"/>
                                                 <constraint firstAttribute="height" constant="21" id="bfJ-gG-aKQ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -263,9 +263,8 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uN1-Lt-S4F">
-                                                <rect key="frame" x="46" y="231" width="48" height="30"/>
+                                                <rect key="frame" x="46" y="231" width="266" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="48" id="AHE-Wo-Rpa"/>
                                                     <constraint firstAttribute="height" constant="30" id="Gtg-7G-y16"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -389,6 +388,7 @@
                                         </subviews>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="uN1-Lt-S4F" secondAttribute="trailing" constant="8" id="0Mk-1l-Ngn"/>
                                             <constraint firstItem="Nrd-ER-Cmb" firstAttribute="leading" secondItem="yCf-hK-SU1" secondAttribute="leading" constant="8" id="18e-bi-jJo"/>
                                             <constraint firstItem="uN1-Lt-S4F" firstAttribute="leading" secondItem="Etn-bi-gPV" secondAttribute="trailing" constant="8" id="2Vi-Rm-NG4"/>
                                             <constraint firstAttribute="trailing" secondItem="Ftg-47-SRt" secondAttribute="trailing" constant="8" id="5sa-hR-rAL"/>
@@ -494,7 +494,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2836.8000000000002" y="131.52709359605913"/>
+            <point key="canvasLocation" x="2835" y="130.98591549295776"/>
         </scene>
         <!--AddNewFlight-->
         <scene sceneID="xWQ-5h-o6T">
