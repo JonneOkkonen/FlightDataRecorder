@@ -29,6 +29,7 @@ class FlightDataTable: UITableViewController {
         super.viewDidLoad()
         DataArray.loadArray() // Load data from Core Data
         tableView.reloadData() // Reload tableView Data
+        tableView.separatorStyle = .none // Remove seperatorLine
     }
     
     override func viewWillAppear(_ animated: Bool) {
