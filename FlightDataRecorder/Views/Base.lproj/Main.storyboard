@@ -10,87 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--FlightDataRecorder-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="StartView" customModule="FlightDataRecorder" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aircraft-475409_1920" translatesAutoresizingMaskIntoConstraints="NO" id="pyV-Cl-LEb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="0.84999999999999998" height="0.94999999999999996"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue_circle" translatesAutoresizingMaskIntoConstraints="NO" id="GdK-VL-ftn">
-                                <rect key="frame" x="0.0" y="159.5" width="320" height="249"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="249" id="2HX-TA-JBs"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="N0u-EH-XMt"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="249" id="W7O-lc-IZk"/>
-                                    <constraint firstAttribute="width" constant="320" id="jip-cV-3nv"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvv-Vp-1aI" userLabel="Flights">
-                                <rect key="frame" x="16" y="496" width="288" height="52"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="bkW-re-s5Y"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Flight Data">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="HAs-yG-dWw" kind="show" identifier="" id="7Y4-bF-Jxm"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight Count" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCm-Kb-9cK">
-                                <rect key="frame" x="113.5" y="219.5" width="93.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="T2p-bT-roq">
-                                <rect key="frame" x="87" y="248" width="146.5" height="72"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2XP-x6-IJS" userLabel="FlightCounter">
-                                        <rect key="frame" x="0.0" y="0.0" width="146.5" height="72"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Fvv-Vp-1aI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="0jR-R7-HyO"/>
-                            <constraint firstItem="T2p-bT-roq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3CY-SN-LAm"/>
-                            <constraint firstItem="pyV-Cl-LEb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="4Dt-B9-sSR"/>
-                            <constraint firstItem="pyV-Cl-LEb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BV7-GQ-CKo"/>
-                            <constraint firstItem="pyV-Cl-LEb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="I7a-P6-aSO"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Fvv-Vp-1aI" secondAttribute="bottom" constant="20" id="SLy-Tb-Kq6"/>
-                            <constraint firstItem="pyV-Cl-LEb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="STu-1X-SVV"/>
-                            <constraint firstItem="GdK-VL-ftn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bMB-b7-wWy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fvv-Vp-1aI" secondAttribute="trailing" constant="16" id="f6v-jk-gHb"/>
-                            <constraint firstItem="T2p-bT-roq" firstAttribute="top" secondItem="jCm-Kb-9cK" secondAttribute="bottom" constant="8" id="fcS-Ku-qHF"/>
-                            <constraint firstItem="jCm-Kb-9cK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fk8-YX-SjY"/>
-                            <constraint firstItem="T2p-bT-roq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fwd-8a-pK2"/>
-                            <constraint firstItem="GdK-VL-ftn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ztT-40-xDC"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="FlightDataRecorder" id="527-df-Ccx"/>
-                    <connections>
-                        <outlet property="flightCount" destination="2XP-x6-IJS" id="AJS-Zg-GOe"/>
-                        <outlet property="mainButton" destination="Fvv-Vp-1aI" id="bFX-LM-pKB"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="997.5" y="132.04225352112675"/>
-        </scene>
         <!--FlightData-->
         <scene sceneID="ckI-Fg-qfU">
             <objects>
@@ -99,9 +18,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="kFN-r5-Dwa">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1et-z0-0oT">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MJ-KN-2ls">
+                                    <rect key="frame" x="105.5" y="20" width="109" height="23"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fhv-NF-Tm6">
+                                    <rect key="frame" x="121" y="51" width="78" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="8MJ-KN-2ls" firstAttribute="centerX" secondItem="kFN-r5-Dwa" secondAttribute="centerX" id="cxS-Z2-PcI"/>
+                                <constraint firstItem="Fhv-NF-Tm6" firstAttribute="centerX" secondItem="kFN-r5-Dwa" secondAttribute="centerX" id="f7U-Bu-wtY"/>
+                                <constraint firstItem="8MJ-KN-2ls" firstAttribute="top" secondItem="kFN-r5-Dwa" secondAttribute="top" constant="20" id="t8u-Oe-rUg"/>
+                                <constraint firstItem="Fhv-NF-Tm6" firstAttribute="top" secondItem="8MJ-KN-2ls" secondAttribute="bottom" constant="8" id="x6J-CM-CiU"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" rowHeight="166" id="rGZ-ha-IXq">
-                                <rect key="frame" x="0.0" y="28" width="320" height="166"/>
+                                <rect key="frame" x="0.0" y="131" width="320" height="166"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rGZ-ha-IXq" id="3Qv-bx-uM5">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="165.5"/>
@@ -276,6 +225,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="flightCountLabel" destination="Fhv-NF-Tm6" id="5F6-Hs-ih1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n38-wy-wU6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -290,12 +242,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="nJK-Tb-Fxw"/>
+                        <segue destination="HAs-yG-dWw" kind="relationship" relationship="rootViewController" id="nzw-nv-ByP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3k-QT-XCU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="102" y="134"/>
+            <point key="canvasLocation" x="1028" y="131"/>
         </scene>
         <!--FlightDetails-->
         <scene sceneID="yUA-JP-NSx">
@@ -871,12 +823,10 @@
     </scenes>
     <resources>
         <image name="UITableViewCell_background" width="1920" height="980"/>
-        <image name="aircraft-475409_1920" width="1920" height="1281"/>
         <image name="aircraft_model_icon" width="512" height="512"/>
         <image name="aircraft_model_icon_blue" width="512" height="512"/>
         <image name="airline_icon" width="512" height="512"/>
         <image name="arrival_icon" width="600" height="600"/>
-        <image name="blue_circle" width="2000" height="2000"/>
         <image name="clock_icon" width="512" height="512"/>
         <image name="count_icon" width="512" height="512"/>
         <image name="date_icon" width="1600" height="1600"/>

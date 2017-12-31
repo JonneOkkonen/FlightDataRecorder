@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A22CADA1FA8DBD200E27985 /* FlightDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22CAD91FA8DBD200E27985 /* FlightDataArray.swift */; };
 		3A308DE21F795DFC00665F71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A308DE11F795DFC00665F71 /* AppDelegate.swift */; };
-		3A308DE41F795DFC00665F71 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A308DE31F795DFC00665F71 /* StartView.swift */; };
 		3A308DE71F795DFC00665F71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A308DE51F795DFC00665F71 /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
 		3A308DEA1F795DFC00665F71 /* FlightDataRecorder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A308DE81F795DFC00665F71 /* FlightDataRecorder.xcdatamodeld */; };
 		3A308DEF1F795DFC00665F71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A308DED1F795DFC00665F71 /* LaunchScreen.storyboard */; };
@@ -44,7 +43,6 @@
 		3A22CAD91FA8DBD200E27985 /* FlightDataArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDataArray.swift; sourceTree = "<group>"; };
 		3A308DDE1F795DFC00665F71 /* FlightDataRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightDataRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A308DE11F795DFC00665F71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A308DE31F795DFC00665F71 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		3A308DE61F795DFC00665F71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A308DE91F795DFC00665F71 /* FlightDataRecorder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlightDataRecorder.xcdatamodel; sourceTree = "<group>"; };
 		3A308DEE1F795DFC00665F71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 			children = (
 				3A308DE11F795DFC00665F71 /* AppDelegate.swift */,
 				3AB67D491FCF2B5200D8BED5 /* CoreLibrary.swift */,
-				3A308DE31F795DFC00665F71 /* StartView.swift */,
 				3A308E121F795ECB00665F71 /* FlightDataTable.swift */,
 				3A22CAD91FA8DBD200E27985 /* FlightDataArray.swift */,
 				3A4A16801F7ABD480002DBB4 /* FlightDetailView.swift */,
@@ -399,7 +396,6 @@
 				3A308E131F795ECB00665F71 /* FlightDataTable.swift in Sources */,
 				3A308DEA1F795DFC00665F71 /* FlightDataRecorder.xcdatamodeld in Sources */,
 				3A4C40C71F966B5600CF03A8 /* KeyboardLayoutConstrain.swift in Sources */,
-				3A308DE41F795DFC00665F71 /* StartView.swift in Sources */,
 				3AB67D4A1FCF2B5200D8BED5 /* CoreLibrary.swift in Sources */,
 				3A4A16811F7ABD480002DBB4 /* FlightDetailView.swift in Sources */,
 				3A308DE21F795DFC00665F71 /* AppDelegate.swift in Sources */,
