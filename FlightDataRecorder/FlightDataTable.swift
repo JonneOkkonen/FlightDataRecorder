@@ -63,20 +63,29 @@ class FlightDataTable: UITableViewController {
         // Variables for Cell Labels
         let flightCount = tableViewCell.viewWithTag(1) as? UILabel
         let airlineCompanyName = tableViewCell.viewWithTag(2) as? UILabel
-        let arrivalDeparture = tableViewCell.viewWithTag(3) as? UILabel
-        let airplaneModel = tableViewCell.viewWithTag(4) as? UILabel
+        let airplaneModel = tableViewCell.viewWithTag(3) as? UILabel
+        let date = tableViewCell.viewWithTag(4) as? UILabel
         let flightTime = tableViewCell.viewWithTag(5) as? UILabel
+        let departureAirport = tableViewCell.viewWithTag(6) as? UILabel
+        let arrivalAirport = tableViewCell.viewWithTag(7) as? UILabel
         
         // Print data to Labels
         let data = DataArray.flightData[indexPath.row]
-        flightCount?.text = String(format: "%04d", DataArray.flightData.count - indexPath.row)
+        flightCount?.text = "#" + String(format: "%04d", DataArray.flightData.count - indexPath.row)
         airlineCompanyName?.text = data.value(forKeyPath: "airlineCompanyName") as? String
-        let arrival = data.value(forKeyPath: "departureAirportName") as? String
-        let departure = data.value(forKeyPath: "arrivalAirportName") as? String
-        arrivalDeparture?.text =  arrival! + " - " + departure!
+        airlineCompanyName?.adjustsFontSizeToFitWidth = true
+        let departure = data.value(forKeyPath: "departureAirportName") as? String
+        let arrival = data.value(forKeyPath: "arrivalAirportName") as? String
+        departureAirport?.text = departure
+        arrivalAirport?.text =  arrival!
         airplaneModel?.text = data.value(forKeyPath: "aircraftModel") as? String
+        date?.text = data.value(forKeyPath: "date") as? String
         flightTime?.text = data.value(forKeyPath: "flightTime") as? String
         return tableViewCell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension;
     }
     
     // Segue to DetailView

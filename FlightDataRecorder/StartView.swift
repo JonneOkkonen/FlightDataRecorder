@@ -19,6 +19,7 @@ class StartView: UIViewController {
         mainButton.layer.cornerRadius = 5 // Change FlightData button corner radius
         DataArray.loadArray() // Load Data from Core Data
         flightCount.text = String(format: "%04d", DataArray.flightData.count) // Flight Count
+        self.navigationController?.navigationBar.prefersLargeTitles = true // Prefer Large Titles
     }
     
     override func viewWillAppear(_ animated: Bool) {
