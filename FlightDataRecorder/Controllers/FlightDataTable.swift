@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlightDataTable: UITableViewController {
+class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate {
     
     // Notes
     /*
@@ -31,17 +31,24 @@ class FlightDataTable: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DataArray.loadArray() // Load data from Core Data
+        Database.loadArray() // Load data from Core Data
         tableView.reloadData() // Reload tableView Data
         tableView.separatorStyle = .none // Remove seperatorLine
-        flightCountLabel.text = String(format: "%04d", DataArray.flightData.count) // Flight Count
+        flightCountLabel.text = String(format: "%04d", Database.flightData.count) // Flight Count
         self.navigationController?.navigationBar.prefersLargeTitles = true // Prefer Large Titles
+        
+        // Check 3D Touch Support
+        if (traitCollection.forceTouchCapability == .available) {
+            registerForPreviewing(with: self, sourceView: tableView)
+        }else {
+            print("No 3DTouch Compability")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DataArray.loadArray() // Load data from Core Data
+        Database.loadArray() // Load data from Core Data
         tableView.reloadData() // Reload tableView Data
-        flightCountLabel.text = String(format: "%04d", DataArray.flightData.count) // Flight Count
+        flightCountLabel.text = String(format: "%04d", Database.flightData.count) // Flight Count
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,7 +60,7 @@ class FlightDataTable: UITableViewController {
     // Number of cell's in tableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // If there is no flight data, display noDataLabel
-        if (DataArray.flightData.count == 0) {
+        if (Database.flightData.count == 0) {
             let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             noDataLabel.text          = "No flight data"
             noDataLabel.textColor     = UIColor.black
@@ -61,7 +68,7 @@ class FlightDataTable: UITableViewController {
             tableView.backgroundView  = noDataLabel
             tableView.separatorStyle  = .none
         }
-        return DataArray.flightData.count
+        return Database.flightData.count
     }
     
     // Cell Content
@@ -78,8 +85,8 @@ class FlightDataTable: UITableViewController {
         let arrivalAirport = tableViewCell.viewWithTag(7) as? UILabel
         
         // Print data to Labels
-        let data = DataArray.flightData[indexPath.row]
-        flightCount?.text = "#" + String(format: "%04d", DataArray.flightData.count - indexPath.row)
+        let data = Database.flightData[indexPath.row]
+        flightCount?.text = "#" + String(format: "%04d", Database.flightData.count - indexPath.row)
         airlineCompanyName?.text = data.value(forKeyPath: "airlineCompanyName") as? String
         airlineCompanyName?.adjustsFontSizeToFitWidth = true
         let departure = data.value(forKeyPath: "departureAirportName") as? String
@@ -101,12 +108,13 @@ class FlightDataTable: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pass flightDataDetails to FlightDetailView
         if segue.identifier == "flightDataDetails" {
-            let indexPath = tableView.indexPathForSelectedRow // IndexPath for selected row
-            let flightDataArray = DataArray.flightData[(indexPath?.row)!] // Variable for flightDataArray
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)! // IndexPath for selected row
+            let flightDataArray = Database.flightData[(indexPath.row)] // Variable for flightDataArray
             let detailSegue = segue.destination as! FlightDetailView // Variable for segue destination
 
             // Variables for data
-            let flightCount = DataArray.flightData.count - (indexPath?.row)!
+            let flightCount = Database.flightData.count - (indexPath.row)
             let airlineCompanyName = flightDataArray.value(forKeyPath: "airlineCompanyName")
             let date = flightDataArray.value(forKeyPath: "date")
             let departureAirport = flightDataArray.value(forKeyPath: "departureAirportName")
@@ -118,7 +126,7 @@ class FlightDataTable: UITableViewController {
             let airplaneModel = flightDataArray.value(forKeyPath: "aircraftModel")
             let flightTime = flightDataArray.value(forKeyPath: "flightTime")
             let notes = flightDataArray.value(forKeyPath: "notes")
-            let arrayIndex = indexPath?.row
+            let arrayIndex = indexPath.row
             
             // Pass data forward to FlightDetailView
             detailSegue.flightCountSegue = flightCount
@@ -138,11 +146,23 @@ class FlightDataTable: UITableViewController {
         
         // Pass flightCount to addNewFlight
         if segue.identifier == "newFlight" {
-            let count = DataArray.flightData.count // FlightCount
+            let count = Database.flightData.count // FlightCount
             let segue = segue.destination as! AddNewFlight // Variable for segue destination
             // Pass data forward to AddNewFlight
             segue.flightCountSegue = count
         }
+    }
+    
+    // 3D Touch
+    
+    // Preview View
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        return storyboard?.instantiateViewController(withIdentifier: "flightDetailView")
+    }
+    
+    // Final View
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show((storyboard?.instantiateViewController(withIdentifier: "flightDetailView"))!, sender: self)
     }
     
 }

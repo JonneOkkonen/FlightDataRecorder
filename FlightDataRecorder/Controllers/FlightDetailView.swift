@@ -254,9 +254,9 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
             departureAirport.isEnabled == false && arrivalAirport.isEnabled == false &&
             flightTime.text != "" && notes.text != "") {
                     // Save Changes to CoreData
-                    DataArray.updateCoreData(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLatSegue, departureAirportLng: departureAirportLngSegue, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLatSegue, arrivalAirportLng: arrivalAirportLngSegue, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
+                    Database.updateCoreData(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLatSegue, departureAirportLng: departureAirportLngSegue, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLatSegue, arrivalAirportLng: arrivalAirportLngSegue, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
         }else {
-            Core.alertView(message: "Fill all fields before saving", context: self)
+            Notifications.alertView(message: "Fill all fields before saving", context: self)
         }
     }
 }

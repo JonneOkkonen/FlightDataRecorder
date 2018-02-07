@@ -7,6 +7,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,9 +23,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1et-z0-0oT">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1et-z0-0oT">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MJ-KN-2ls">
@@ -42,10 +42,14 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="1et-z0-0oT" secondAttribute="trailing" id="K7z-e1-t5A"/>
                                 <constraint firstItem="8MJ-KN-2ls" firstAttribute="centerX" secondItem="kFN-r5-Dwa" secondAttribute="centerX" id="cxS-Z2-PcI"/>
                                 <constraint firstItem="Fhv-NF-Tm6" firstAttribute="centerX" secondItem="kFN-r5-Dwa" secondAttribute="centerX" id="f7U-Bu-wtY"/>
+                                <constraint firstAttribute="bottom" secondItem="1et-z0-0oT" secondAttribute="bottom" id="hun-9W-YXK"/>
+                                <constraint firstItem="1et-z0-0oT" firstAttribute="leading" secondItem="kFN-r5-Dwa" secondAttribute="leading" id="obh-Uk-wIy"/>
                                 <constraint firstItem="8MJ-KN-2ls" firstAttribute="top" secondItem="kFN-r5-Dwa" secondAttribute="top" constant="20" id="t8u-Oe-rUg"/>
                                 <constraint firstItem="Fhv-NF-Tm6" firstAttribute="top" secondItem="8MJ-KN-2ls" secondAttribute="bottom" constant="8" id="x6J-CM-CiU"/>
+                                <constraint firstItem="1et-z0-0oT" firstAttribute="top" secondItem="kFN-r5-Dwa" secondAttribute="top" id="yhQ-m6-z5o"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -56,9 +60,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="165.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UITableViewCell_background" translatesAutoresizingMaskIntoConstraints="NO" id="vhb-ax-Rab">
+                                        <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UITableViewCell_background" translatesAutoresizingMaskIntoConstraints="NO" id="vhb-ax-Rab">
                                             <rect key="frame" x="0.5" y="0.0" width="319.5" height="165.5"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="vhb-ax-Rab" secondAttribute="height" multiplier="160:83" id="60k-ta-XqA"/>
                                             </constraints>
@@ -67,7 +71,7 @@
                                             <rect key="frame" x="11.5" y="13" width="294" height="140"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="j2W-Om-iU5" userLabel="FlightCount">
-                                                    <rect key="frame" x="15" y="5" width="56" height="18"/>
+                                                    <rect key="frame" x="15" y="7" width="56" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="27T-ec-QXO"/>
                                                         <constraint firstAttribute="width" secondItem="j2W-Om-iU5" secondAttribute="height" multiplier="63:20" id="rZ6-yO-4ID"/>
@@ -77,7 +81,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Airline Company Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="CLI-wq-a4H">
-                                                    <rect key="frame" x="83" y="5" width="203" height="21"/>
+                                                    <rect key="frame" x="83" y="7" width="203" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -116,13 +120,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure Airport" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ynp-WF-0Qt" userLabel="DepartureAirport">
-                                                    <rect key="frame" x="107" y="83" width="179" height="15"/>
+                                                    <rect key="frame" x="107" y="82" width="179" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival Airport" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="cgg-Pe-sy2" userLabel="ArrivalAirport">
-                                                    <rect key="frame" x="107" y="117" width="179" height="15"/>
+                                                    <rect key="frame" x="107" y="116" width="179" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -141,7 +145,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99h 30min" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Dbc-yT-bOT" userLabel="Duration">
-                                                    <rect key="frame" x="224" y="56" width="61.5" height="21"/>
+                                                    <rect key="frame" x="224" y="55" width="61.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Dbc-yT-bOT" secondAttribute="height" multiplier="61:21" id="AJc-Jd-YPY"/>
                                                     </constraints>
@@ -173,7 +177,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="BOW-Gm-xua" secondAttribute="bottom" constant="9" id="X0B-wy-woj"/>
                                                 <constraint firstItem="E7c-oB-fFC" firstAttribute="top" secondItem="O9B-dM-kpn" secondAttribute="bottom" constant="9" id="ZWN-HR-T3e"/>
                                                 <constraint firstItem="8Bu-PE-2Mh" firstAttribute="top" secondItem="Vsa-LU-29T" secondAttribute="bottom" constant="8" id="ZzS-mp-ZFX"/>
-                                                <constraint firstItem="Dbc-yT-bOT" firstAttribute="top" secondItem="O9B-dM-kpn" secondAttribute="bottom" constant="7" id="ak6-SR-XW0"/>
+                                                <constraint firstItem="Dbc-yT-bOT" firstAttribute="top" secondItem="O9B-dM-kpn" secondAttribute="bottom" constant="6" id="ak6-SR-XW0"/>
                                                 <constraint firstItem="yKq-kG-jf0" firstAttribute="leading" secondItem="joa-6l-Zn1" secondAttribute="trailing" id="dcG-bp-Wmz"/>
                                                 <constraint firstItem="Dbc-yT-bOT" firstAttribute="leading" secondItem="E7c-oB-fFC" secondAttribute="trailing" constant="8" id="eEn-Ev-iKu"/>
                                                 <constraint firstAttribute="bottom" secondItem="joa-6l-Zn1" secondAttribute="bottom" constant="9" id="foW-Bm-hZP"/>
@@ -183,11 +187,11 @@
                                                 <constraint firstAttribute="trailing" secondItem="O9B-dM-kpn" secondAttribute="trailing" constant="8" id="j2x-qN-L2s"/>
                                                 <constraint firstAttribute="bottom" secondItem="yKq-kG-jf0" secondAttribute="bottom" constant="5" id="jDJ-zp-cDC"/>
                                                 <constraint firstItem="cgg-Pe-sy2" firstAttribute="top" secondItem="Ynp-WF-0Qt" secondAttribute="bottom" constant="19" id="jQ6-js-miB"/>
-                                                <constraint firstItem="j2W-Om-iU5" firstAttribute="top" secondItem="2kn-RT-ARW" secondAttribute="top" constant="5" id="l1N-lY-dt7"/>
+                                                <constraint firstItem="j2W-Om-iU5" firstAttribute="top" secondItem="2kn-RT-ARW" secondAttribute="top" constant="7" id="l1N-lY-dt7"/>
                                                 <constraint firstAttribute="trailing" secondItem="cgg-Pe-sy2" secondAttribute="trailing" constant="8" id="lxG-Mg-gEl"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ynp-WF-0Qt" secondAttribute="trailing" constant="8" id="nid-xe-Zrz"/>
                                                 <constraint firstAttribute="trailing" secondItem="Dbc-yT-bOT" secondAttribute="trailing" constant="8" id="pgO-LA-CSy"/>
-                                                <constraint firstItem="CLI-wq-a4H" firstAttribute="top" secondItem="2kn-RT-ARW" secondAttribute="top" constant="5" id="rlR-ew-ZDV"/>
+                                                <constraint firstItem="CLI-wq-a4H" firstAttribute="top" secondItem="2kn-RT-ARW" secondAttribute="top" constant="7" id="rlR-ew-ZDV"/>
                                                 <constraint firstItem="O9B-dM-kpn" firstAttribute="top" secondItem="CLI-wq-a4H" secondAttribute="bottom" constant="8" id="sVb-az-UBY"/>
                                                 <constraint firstItem="Ugz-cT-jc6" firstAttribute="leading" secondItem="8Bu-PE-2Mh" secondAttribute="trailing" constant="8" id="w3e-L1-Q5l"/>
                                                 <constraint firstItem="joa-6l-Zn1" firstAttribute="leading" secondItem="2kn-RT-ARW" secondAttribute="leading" constant="15" id="w8R-eu-aeG"/>
@@ -209,7 +213,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="W4O-Y8-gHz" kind="show" identifier="flightDataDetails" id="VKh-D1-5FZ"/>
+                                    <segue destination="W4O-Y8-gHz" kind="show" identifier="flightDataDetails" id="VKh-D1-5FZ">
+                                        <segue key="commit" inheritsFrom="parent" id="ysz-la-RTP"/>
+                                        <segue key="preview" inheritsFrom="commit" id="WDl-6Z-CMm"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -252,7 +259,7 @@
         <!--FlightDetails-->
         <scene sceneID="yUA-JP-NSx">
             <objects>
-                <viewController id="W4O-Y8-gHz" userLabel="FlightDetails" customClass="FlightDetailView" customModule="FlightDataRecorder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="flightDetailView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W4O-Y8-gHz" userLabel="FlightDetails" customClass="FlightDetailView" customModule="FlightDataRecorder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q6C-6H-VQe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -838,4 +845,7 @@
         <image name="whereToIcon" width="53" height="195"/>
         <image name="wing-221526_1920" width="1920" height="1280"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="VKh-D1-5FZ"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 
-var DataArray: FlightDataArray = FlightDataArray()
+var Database: FlightDataLibrary = FlightDataLibrary()
 
-class FlightDataArray: NSObject {
+class FlightDataLibrary: NSObject {
+    
     // FlightData Array
     var flightData: [NSManagedObject] = []
     

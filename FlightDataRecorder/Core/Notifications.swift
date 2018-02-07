@@ -8,9 +8,10 @@
 
 import UIKit
 
-var Core: CoreLibrary = CoreLibrary()
+var Notifications: Alerts = Alerts()
 
-class CoreLibrary: NSObject {
+class Alerts: NSObject {
+    
     func alertView(message: String, context: UIViewController) {
         let alertController = UIAlertController(title: "Error", message:
             "\(message)", preferredStyle: UIAlertControllerStyle.alert)
