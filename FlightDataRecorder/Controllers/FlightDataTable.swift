@@ -86,16 +86,22 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
         
         // Print data to Labels
         let data = Database.flightData[indexPath.row]
-        flightCount?.text = "#" + String(format: "%04d", Database.flightData.count - indexPath.row)
-        airlineCompanyName?.text = data.value(forKeyPath: "airlineCompanyName") as? String
-        airlineCompanyName?.adjustsFontSizeToFitWidth = true
         let departure = data.value(forKeyPath: "departureAirportName") as? String
         let arrival = data.value(forKeyPath: "arrivalAirportName") as? String
+        
+        flightCount?.text = "#" + String(format: "%04d", Database.flightData.count - indexPath.row)
+        airlineCompanyName?.text = data.value(forKeyPath: "airlineCompanyName") as? String
         departureAirport?.text = departure
         arrivalAirport?.text =  arrival!
         airplaneModel?.text = data.value(forKeyPath: "aircraftModel") as? String
         date?.text = data.value(forKeyPath: "date") as? String
         flightTime?.text = data.value(forKeyPath: "flightTime") as? String
+        
+        // Scale AirlineCompanyName to Fit TextField
+        airlineCompanyName?.font = UIFont.boldSystemFont(ofSize: 30)
+        airlineCompanyName?.numberOfLines = 0
+        airlineCompanyName?.minimumScaleFactor = 0.1
+        
         return tableViewCell
     }
     
