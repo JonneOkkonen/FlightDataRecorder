@@ -16,7 +16,6 @@
 		3A308E131F795ECB00665F71 /* FlightDataTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A308E121F795ECB00665F71 /* FlightDataTable.swift */; };
 		3A4A16811F7ABD480002DBB4 /* FlightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A16801F7ABD480002DBB4 /* FlightDetailView.swift */; };
 		3A4C40C71F966B5600CF03A8 /* KeyboardLayoutConstrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C40C61F966B5600CF03A8 /* KeyboardLayoutConstrain.swift */; };
-		3A5DAC931F966FF1008309A5 /* AddNewFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5DAC921F966FF1008309A5 /* AddNewFlight.swift */; };
 		3A60DE6A202A21B000C0479E /* FlightDataLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A60DE69202A21B000C0479E /* FlightDataLibrary.swift */; };
 		3AB67D4A1FCF2B5200D8BED5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB67D491FCF2B5200D8BED5 /* Notifications.swift */; };
 		3AFBD0341F7ACADB009D34E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AFBD0331F7ACADB009D34E8 /* Images.xcassets */; };
@@ -55,7 +54,6 @@
 		3A308E121F795ECB00665F71 /* FlightDataTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDataTable.swift; sourceTree = "<group>"; };
 		3A4A16801F7ABD480002DBB4 /* FlightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlightDetailView.swift; path = FlightDataRecorder/Controllers/FlightDetailView.swift; sourceTree = SOURCE_ROOT; };
 		3A4C40C61F966B5600CF03A8 /* KeyboardLayoutConstrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstrain.swift; sourceTree = "<group>"; };
-		3A5DAC921F966FF1008309A5 /* AddNewFlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddNewFlight.swift; path = FlightDataRecorder/Controllers/AddNewFlight.swift; sourceTree = SOURCE_ROOT; };
 		3A60DE69202A21B000C0479E /* FlightDataLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightDataLibrary.swift; sourceTree = "<group>"; };
 		3AB67D491FCF2B5200D8BED5 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		3AFBD0331F7ACADB009D34E8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 			children = (
 				3A308E121F795ECB00665F71 /* FlightDataTable.swift */,
 				3A4A16801F7ABD480002DBB4 /* FlightDetailView.swift */,
-				3A5DAC921F966FF1008309A5 /* AddNewFlight.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -415,7 +412,6 @@
 				3AB67D4A1FCF2B5200D8BED5 /* Notifications.swift in Sources */,
 				3A4A16811F7ABD480002DBB4 /* FlightDetailView.swift in Sources */,
 				3A308DE21F795DFC00665F71 /* AppDelegate.swift in Sources */,
-				3A5DAC931F966FF1008309A5 /* AddNewFlight.swift in Sources */,
 				3A60DE6A202A21B000C0479E /* FlightDataLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

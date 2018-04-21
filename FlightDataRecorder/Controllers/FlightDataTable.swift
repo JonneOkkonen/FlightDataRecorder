@@ -118,16 +118,16 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
             let indexPath = tableView.indexPath(for: cell)! // IndexPath for selected row
             let detailSegue = segue.destination as! FlightDetailView // Variable for segue destination
             
-            // Pass data forward to FlightDetailView
+            // Set ViewController mode to edit and cell's indexPath
+            detailSegue.mode = "edit"
             detailSegue.indexPath = indexPath
         }
         
         // Pass flightCount to addNewFlight
         if segue.identifier == "newFlight" {
-            let count = Database.flightData.count // FlightCount
-            let segue = segue.destination as! AddNewFlight // Variable for segue destination
-            // Pass data forward to AddNewFlight
-            segue.flightCountSegue = count
+            let segue = segue.destination as! FlightDetailView // Variable for segue destination
+            // Set ViewController mode to add
+            segue.mode = "add"
         }
     }
     

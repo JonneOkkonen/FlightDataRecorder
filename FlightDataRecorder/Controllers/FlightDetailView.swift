@@ -21,10 +21,11 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     @IBOutlet weak var arrivalAirport: UITextField!
     @IBOutlet weak var flightTime: UITextField!
     @IBOutlet weak var detailViewTitle: UINavigationItem!
-    @IBOutlet var editButton: UIBarButtonItem!
+    @IBOutlet var actionButton: UIBarButtonItem!
     @IBOutlet weak var notes: UITextView!
     
     // Segue Variables
+    var mode: String!
     var indexPath: IndexPath!
     
     // Variables
@@ -38,8 +39,21 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView() // Print segue data to fields
-        ConfigureMapView() // Configure MapView
+        
+        // Setup View for correct mode
+        switch mode {
+        case "add":
+            configureViewForAdd() // ConfigureView for adding flight
+            detailViewTitle.title = "New flight" // Set ViewController Title
+            // Print flightCount value to label
+            flightCount.text = String(format: "%04d", Database.flightData.count + 1)
+        case "edit":
+            actionButton.title = "Edit" // Change button title to Edit
+            configureViewForEdit() // ConfigureView for editing flight
+            ConfigureMapView() // Configure MapView
+        default:
+            actionButton.title = "Edit" // Change button title to Edit
+        }
         mapKitView.layer.cornerRadius = 5 // Change mapKitView corner radius
     }
     
@@ -47,40 +61,50 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         super.didReceiveMemoryWarning()
     }
     
-    // Functions
+    // Actions
 
     // Change enabled status from textfields with edit-button
-    @IBAction func editButton(_ sender: Any) {
-        if airlineCompanyName.isEnabled == true {
-            editButton.title = "Edit" // Change button title to Edit
-            // Change Textfields Enabled state to false
-            airlineCompanyName.isEnabled = false
-            aircraftModel.isEnabled = false
-            date.isEnabled = false
-            departureAirport.isEnabled = false
-            arrivalAirport.isEnabled = false
-            flightTime.isEnabled = false
-            notes.isEditable = false
-            // Ask user to if he want's to save changes
-            let checkAirport = UIAlertController(title: "Notification", message: "Would you like to save changes?", preferredStyle: UIAlertControllerStyle.alert)
-            checkAirport.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-                print("SaveChangesChecker: Yes")
-                self.saveChanges()
-            }))
-            checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
-                print("SaveChangesChecker: No")
-            }))
+    @IBAction func actionButton(_ sender: Any) {
+        // Edit Flight Mode
+        if(mode == "edit") {
+            if airlineCompanyName.isEnabled == true {
+                actionButton.title = "Edit" // Change button title to Edit
+                
+                // Change Textfields Enabled state to false
+                airlineCompanyName.isEnabled = false
+                aircraftModel.isEnabled = false
+                date.isEnabled = false
+                departureAirport.isEnabled = false
+                arrivalAirport.isEnabled = false
+                flightTime.isEnabled = false
+                notes.isEditable = false
+                
+                // Ask user to if he want's to save changes
+                let checkAirport = UIAlertController(title: "Notification", message: "Would you like to save changes?", preferredStyle: UIAlertControllerStyle.alert)
+                checkAirport.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                    print("SaveChangesChecker: Yes")
+                    self.saveChanges()
+                }))
+                checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+                    print("SaveChangesChecker: No")
+                }))
                 present(checkAirport, animated: true, completion: nil)
-        }else if airlineCompanyName.isEnabled == false {
-            editButton.title = "Save" // Change button title to Save
-            // Change Textfields Enabled state to true
-            airlineCompanyName.isEnabled = true
-            aircraftModel.isEnabled = true
-            date.isEnabled = true
-            departureAirport.isEnabled = true
-            arrivalAirport.isEnabled = true
-            flightTime.isEnabled = true
-            notes.isEditable = true
+            }else if airlineCompanyName.isEnabled == false {
+                actionButton.title = "Save" // Change button title to Save
+                
+                // Change Textfields Enabled state to true
+                airlineCompanyName.isEnabled = true
+                aircraftModel.isEnabled = true
+                date.isEnabled = true
+                departureAirport.isEnabled = true
+                arrivalAirport.isEnabled = true
+                flightTime.isEnabled = true
+                notes.isEditable = true
+            }
+        }
+        // Add Flight Mode
+        if(mode == "add") {
+            addFlight()
         }
     }
     
@@ -88,6 +112,8 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     @IBAction func endEditing(_ sender: Any) {
         self.view.endEditing(true)
     }
+    
+    // ViewSetup
     
     // When starting FlightTime editing bring timePicker instead of normal keyboard
     @IBAction func flightTimeEditing(_ sender: UITextField) {
@@ -124,9 +150,20 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         date.text = dateFormatter.string(from: sender.date)
     }
     
-    func configureView() {
+    // Get Departure Airport Coordinates when textEditingEnds
+    @IBAction func departureEditingDidEnd(_ sender: UITextField) {
+        getAirportCoordinates(airportName: departureAirport.text!, airport: "departure")
+    }
+    
+    // Get Arrival Airport Coordinates when textEditingEnds
+    @IBAction func arrivalEditingDidEnd(_ sender: UITextField) {
+        getAirportCoordinates(airportName: arrivalAirport.text!, airport: "arrival")
+    }
+    
+    func configureViewForEdit() {
         let flightDataArray = Database.flightData[(indexPath.row)] // Variable for flightDataArray
         
+        // Get Data from CoreData to variables
         _departureAirport = flightDataArray.value(forKeyPath: "departureAirportName") as! String
         departureAirportLat = flightDataArray.value(forKeyPath: "departureAirportLat") as! Double
         departureAirportLng = flightDataArray.value(forKeyPath: "departureAirportLng") as! Double
@@ -135,7 +172,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         arrivalAirportLng = flightDataArray.value(forKeyPath: "arrivalAirportLng") as! Double
         arrayIndex = indexPath.row
         
-        // Print segue data to fields
+        // Get Data from CoreData to Fields
         detailViewTitle.title = "Flight " + String(format: "%04d", Database.flightData.count - (indexPath.row))
         flightCount.text = String(format: "%04d", Database.flightData.count - (indexPath.row))
         date.text = flightDataArray.value(forKeyPath: "date") as? String
@@ -147,37 +184,71 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         notes.text = flightDataArray.value(forKeyPath: "notes") as? String
     }
     
+    func configureViewForAdd() {
+        actionButton.title = "Save" // Change button title to Save
+        // Change Textfields Enabled state to true
+        airlineCompanyName.isEnabled = true
+        aircraftModel.isEnabled = true
+        date.isEnabled = true
+        departureAirport.isEnabled = true
+        arrivalAirport.isEnabled = true
+        flightTime.isEnabled = true
+        notes.isEditable = true
+    }
+    
+    // MapView
+    
     func ConfigureMapView() {
         // MapView Configure
         mapKitView.delegate = self
         mapKitView.showsScale = true
         
+        // Variables
+        var sourceCoordinates: CLLocationCoordinate2D!
+        var destCoordinates: CLLocationCoordinate2D!
+        
         // Departure/Arrival location Setup
         
-        // Variables for coordinates
-        let sourceCoordinates = CLLocationCoordinate2D(latitude: departureAirportLat, longitude: departureAirportLng)
-        let destCoordinates = CLLocationCoordinate2D(latitude: arrivalAirportLat, longitude: arrivalAirportLng)
+        // Check if there is departureAirportCoordinates
+        if(departureAirportLat != nil && departureAirportLng != nil) {
+            
+            // Set Coordinates
+            sourceCoordinates = CLLocationCoordinate2D(latitude: departureAirportLat, longitude: departureAirportLng)
+            
+            // Add Source point to map
+            let sourceAnnotation = MKPointAnnotation()
+            
+            // Departure Airport Point's location and title
+            sourceAnnotation.coordinate = CLLocationCoordinate2D(latitude: departureAirportLat, longitude: departureAirportLng)
+            sourceAnnotation.title = _departureAirport
+            mapKitView.addAnnotation(sourceAnnotation) // Add Point to map
+        }
         
-        // Draw polyline between points
-        var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]() // Points array
-        points.append(sourceCoordinates) // Add Source coordinates to array
-        points.append(destCoordinates) // Add Destination coordinates to array
-        let polyline = MKPolyline(coordinates: &points, count: points.count) // Draw polyline
-        mapKitView.add(polyline) // Add polyline to map
+        // Check if there is arrivalAirportCoordinates
+        if(arrivalAirportLat != nil && arrivalAirportLng != nil) {
+            
+            // Set Coordinates
+            destCoordinates = CLLocationCoordinate2D(latitude: arrivalAirportLat, longitude: arrivalAirportLng)
+            
+            // Add Destination point to map
+            let destAnnotation = MKPointAnnotation()
+            
+            // Arrival Airport Point's location and title
+            destAnnotation.coordinate = CLLocationCoordinate2D(latitude: arrivalAirportLat, longitude: arrivalAirportLng)
+            destAnnotation.title = _arrivalAirport
+            mapKitView.addAnnotation(destAnnotation) // add Point to map
+        }
         
-        // Add source/destination points to map
-        let sourceAnnotation = MKPointAnnotation()
-        let destAnnotation = MKPointAnnotation()
-        
-        // Departure Airport Point's location and title
-        sourceAnnotation.coordinate = CLLocationCoordinate2D(latitude: departureAirportLat, longitude: departureAirportLng)
-        sourceAnnotation.title = _departureAirport
-        mapKitView.addAnnotation(sourceAnnotation)
-        
-        // Arrival Airport Point's location and title
-        destAnnotation.coordinate = CLLocationCoordinate2D(latitude: arrivalAirportLat, longitude: arrivalAirportLng)
-        destAnnotation.title = _arrivalAirport
-        mapKitView.addAnnotation(destAnnotation)
+        // Only Draw polyline if both airports are set
+        if(departureAirportLng != nil && departureAirportLat != nil &&
+            arrivalAirportLng != nil && arrivalAirportLat != nil) {
+            // Draw polyline between points
+            var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]() // Points array
+            points.append(sourceCoordinates) // Add Source coordinates to array
+            points.append(destCoordinates) // Add Destination coordinates to array
+            let polyline = MKPolyline(coordinates: &points, count: points.count) // Draw polyline
+            mapKitView.add(polyline) // Add polyline to map
+        }
         
         // Zoom view to fit both points
         mapKitView.showAnnotations(mapKitView.annotations, animated: true)
@@ -244,17 +315,9 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         }
     }
     
-    // Get Departure Airport Coordinates when textEditingEnds
-    @IBAction func departureEditingDidEnd(_ sender: UITextField) {
-        getAirportCoordinates(airportName: departureAirport.text!, airport: "departure")
-    }
+    // CoreData
     
-    // Get Arrival Airport Coordinates when textEditingEnds
-    @IBAction func arrivalEditingDidEnd(_ sender: UITextField) {
-        getAirportCoordinates(airportName: arrivalAirport.text!, airport: "arrival")
-    }
-    
-    // Update values to coreData
+    // Update values to CoreData
     func saveChanges() {
         // Check that fields are filled
         if (airlineCompanyName.text != "" && aircraftModel.text != "" && date.text != "" &&
@@ -262,6 +325,42 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
             flightTime.text != "" && notes.text != "") {
                     // Save Changes to CoreData
                     Database.updateCoreData(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
+        }else {
+            Notifications.alertView(message: "Fill all fields before saving", context: self)
+        }
+    }
+    
+    // Add flight to CoreData
+    func addFlight() {
+        if (airlineCompanyName.text != "" && aircraftModel.text != "" && date.text != "" && departureAirport.isEnabled == false &&
+            arrivalAirport.isEnabled == false && flightTime.text != "" && notes.text != "") {
+            Database.addFlight(flightCount: Int(flightCount.text!)!, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
+            
+            // Notify user that flight was saved successfully and Empty all fields
+            let checkAirport = UIAlertController(title: "Action", message: "Flight was successfully added.", preferredStyle: UIAlertControllerStyle.alert)
+            checkAirport.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action: UIAlertAction!) in
+                Database.loadArray()
+                let count = Database.flightData.count + 1
+                self.flightCount.text = String(format: "%04d", count)
+                self.airlineCompanyName.text = ""
+                self.aircraftModel.text = ""
+                self.date.text = ""
+                self.departureAirport.text = ""
+                self.departureAirport.isEnabled = true
+                self.departureAirportLat = 0.00
+                self.departureAirportLng = 0.00
+                self.arrivalAirport.text = ""
+                self.arrivalAirport.isEnabled = true
+                self.arrivalAirportLat = 0.00
+                self.arrivalAirportLng = 0.00
+                self.flightTime.text = ""
+                self.notes.text = "Notes..."
+                // Clear polyline
+                self.mapKitView.removeOverlays(self.mapKitView.overlays)
+                // Clear Pins from map
+                self.mapKitView.removeAnnotations(self.mapKitView.annotations)
+            }))
+            present(checkAirport, animated: true, completion: nil)
         }else {
             Notifications.alertView(message: "Fill all fields before saving", context: self)
         }
