@@ -116,38 +116,10 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
         if segue.identifier == "flightDataDetails" {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)! // IndexPath for selected row
-            let flightDataArray = Database.flightData[(indexPath.row)] // Variable for flightDataArray
             let detailSegue = segue.destination as! FlightDetailView // Variable for segue destination
-
-            // Variables for data
-            let flightCount = Database.flightData.count - (indexPath.row)
-            let airlineCompanyName = flightDataArray.value(forKeyPath: "airlineCompanyName")
-            let date = flightDataArray.value(forKeyPath: "date")
-            let departureAirport = flightDataArray.value(forKeyPath: "departureAirportName")
-            let departureAirportLat = flightDataArray.value(forKeyPath: "departureAirportLat")
-            let departureAirportLng = flightDataArray.value(forKeyPath: "departureAirportLng")
-            let arrivalAirport = flightDataArray.value(forKeyPath: "arrivalAirportName")
-            let arrivalAirportLat = flightDataArray.value(forKeyPath: "arrivalAirportLat")
-            let arrivalAirportLng = flightDataArray.value(forKeyPath: "arrivalAirportLng")
-            let airplaneModel = flightDataArray.value(forKeyPath: "aircraftModel")
-            let flightTime = flightDataArray.value(forKeyPath: "flightTime")
-            let notes = flightDataArray.value(forKeyPath: "notes")
-            let arrayIndex = indexPath.row
             
             // Pass data forward to FlightDetailView
-            detailSegue.flightCountSegue = flightCount
-            detailSegue.airlineCompanyNameSegue = airlineCompanyName as! String
-            detailSegue.dateSegue = date as! String
-            detailSegue.departureAirportSegue = departureAirport as! String
-            detailSegue.departureAirportLatSegue = departureAirportLat as! Double
-            detailSegue.departureAirportLngSegue = departureAirportLng as! Double
-            detailSegue.arrivalAirportSegue = arrivalAirport as! String
-            detailSegue.arrivalAirportLatSegue = arrivalAirportLat as! Double
-            detailSegue.arrivalAirportLngSegue = arrivalAirportLng as! Double
-            detailSegue.aircraftModelSegue = airplaneModel as! String
-            detailSegue.flightTimeSegue = flightTime as! String
-            detailSegue.notesSegue = notes as! String
-            detailSegue.arrayIndex = arrayIndex
+            detailSegue.indexPath = indexPath
         }
         
         // Pass flightCount to addNewFlight

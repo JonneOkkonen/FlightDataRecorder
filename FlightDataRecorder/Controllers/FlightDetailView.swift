@@ -25,18 +25,15 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     @IBOutlet weak var notes: UITextView!
     
     // Segue Variables
-    var flightCountSegue: Int!
-    var airlineCompanyNameSegue: String!
-    var aircraftModelSegue: String!
-    var dateSegue: String!
-    var departureAirportSegue: String!
-    var departureAirportLatSegue: Double!
-    var departureAirportLngSegue: Double!
-    var arrivalAirportSegue: String!
-    var arrivalAirportLatSegue: Double!
-    var arrivalAirportLngSegue: Double!
-    var flightTimeSegue: String!
-    var notesSegue: String!
+    var indexPath: IndexPath!
+    
+    // Variables
+    var _departureAirport: String!
+    var departureAirportLat: Double!
+    var departureAirportLng: Double!
+    var _arrivalAirport: String!
+    var arrivalAirportLat: Double!
+    var arrivalAirportLng: Double!
     var arrayIndex: Int!
     
     override func viewDidLoad() {
@@ -128,16 +125,26 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     }
     
     func configureView() {
+        let flightDataArray = Database.flightData[(indexPath.row)] // Variable for flightDataArray
+        
+        _departureAirport = flightDataArray.value(forKeyPath: "departureAirportName") as! String
+        departureAirportLat = flightDataArray.value(forKeyPath: "departureAirportLat") as! Double
+        departureAirportLng = flightDataArray.value(forKeyPath: "departureAirportLng") as! Double
+        _arrivalAirport = flightDataArray.value(forKeyPath: "arrivalAirportName") as! String
+        arrivalAirportLat = flightDataArray.value(forKeyPath: "arrivalAirportLat") as! Double
+        arrivalAirportLng = flightDataArray.value(forKeyPath: "arrivalAirportLng") as! Double
+        arrayIndex = indexPath.row
+        
         // Print segue data to fields
-        detailViewTitle.title = "Flight " + String(format: "%04d", flightCountSegue)
-        flightCount.text = String(format: "%04d", flightCountSegue)
-        date.text = dateSegue
-        airlineCompanyName.text = airlineCompanyNameSegue
-        aircraftModel.text = aircraftModelSegue
-        departureAirport.text = departureAirportSegue
-        arrivalAirport.text = arrivalAirportSegue
-        flightTime.text = flightTimeSegue
-        notes.text = notesSegue
+        detailViewTitle.title = "Flight " + String(format: "%04d", Database.flightData.count - (indexPath.row))
+        flightCount.text = String(format: "%04d", Database.flightData.count - (indexPath.row))
+        date.text = flightDataArray.value(forKeyPath: "date") as? String
+        airlineCompanyName.text = flightDataArray.value(forKeyPath: "airlineCompanyName") as? String
+        aircraftModel.text = flightDataArray.value(forKeyPath: "aircraftModel") as? String
+        departureAirport.text = flightDataArray.value(forKeyPath: "departureAirportName") as? String
+        arrivalAirport.text = flightDataArray.value(forKeyPath: "arrivalAirportName") as? String
+        flightTime.text = flightDataArray.value(forKeyPath: "flightTime") as? String
+        notes.text = flightDataArray.value(forKeyPath: "notes") as? String
     }
     
     func ConfigureMapView() {
@@ -148,8 +155,8 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         // Departure/Arrival location Setup
         
         // Variables for coordinates
-        let sourceCoordinates = CLLocationCoordinate2D(latitude: departureAirportLatSegue, longitude: departureAirportLngSegue)
-        let destCoordinates = CLLocationCoordinate2D(latitude: arrivalAirportLatSegue, longitude: arrivalAirportLngSegue)
+        let sourceCoordinates = CLLocationCoordinate2D(latitude: departureAirportLat, longitude: departureAirportLng)
+        let destCoordinates = CLLocationCoordinate2D(latitude: arrivalAirportLat, longitude: arrivalAirportLng)
         
         // Draw polyline between points
         var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]() // Points array
@@ -163,13 +170,13 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         let destAnnotation = MKPointAnnotation()
         
         // Departure Airport Point's location and title
-        sourceAnnotation.coordinate = CLLocationCoordinate2D(latitude: departureAirportLatSegue, longitude: departureAirportLngSegue)
-        sourceAnnotation.title = departureAirportSegue
+        sourceAnnotation.coordinate = CLLocationCoordinate2D(latitude: departureAirportLat, longitude: departureAirportLng)
+        sourceAnnotation.title = _departureAirport
         mapKitView.addAnnotation(sourceAnnotation)
         
         // Arrival Airport Point's location and title
-        destAnnotation.coordinate = CLLocationCoordinate2D(latitude: arrivalAirportLatSegue, longitude: arrivalAirportLngSegue)
-        destAnnotation.title = arrivalAirportSegue
+        destAnnotation.coordinate = CLLocationCoordinate2D(latitude: arrivalAirportLat, longitude: arrivalAirportLng)
+        destAnnotation.title = _arrivalAirport
         mapKitView.addAnnotation(destAnnotation)
         
         // Zoom view to fit both points
@@ -204,8 +211,8 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
                     // Disable arrivalAirportField
                     self.arrivalAirport.isEnabled = false
                     // Save arrivalAirport Coordinates to variables
-                    self.arrivalAirportLatSegue = lat
-                    self.arrivalAirportLngSegue = lng
+                    self.arrivalAirportLat = lat
+                    self.arrivalAirportLng = lng
                     // Clear polyline
                     self.mapKitView.removeOverlays(self.mapKitView.overlays)
                     // Clear Pins from map
@@ -219,8 +226,8 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
                     // Disable departureAirportField
                     self.departureAirport.isEnabled = false
                     // Save departureAirport Coordinates to variables
-                    self.departureAirportLatSegue = lat
-                    self.departureAirportLngSegue = lng
+                    self.departureAirportLat = lat
+                    self.departureAirportLng = lng
                     // Clear polyline
                     self.mapKitView.removeOverlays(self.mapKitView.overlays)
                     // Clear Pins from map
@@ -254,7 +261,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
             departureAirport.isEnabled == false && arrivalAirport.isEnabled == false &&
             flightTime.text != "" && notes.text != "") {
                     // Save Changes to CoreData
-                    Database.updateCoreData(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLatSegue, departureAirportLng: departureAirportLngSegue, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLatSegue, arrivalAirportLng: arrivalAirportLngSegue, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
+                    Database.updateCoreData(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
         }else {
             Notifications.alertView(message: "Fill all fields before saving", context: self)
         }
