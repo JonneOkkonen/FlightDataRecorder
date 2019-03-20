@@ -9,15 +9,13 @@
 import UIKit
 import CoreData
 
-var Database: FlightDataLibrary = FlightDataLibrary()
-
-class FlightDataLibrary: NSObject {
+public class Database: NSObject {
     
     // FlightData Array
-    var flightData: [NSManagedObject] = []
+    static var FlightDataArray: [NSManagedObject] = []
     
     // AddFlight and save it to CoreData
-    func addFlight(flightCount: Int, airlineCompanyName: String!, date: String!, departureAirportName: String!, departureAirportLat: Double!, departureAirportLng: Double!, arrivalAirportName: String!, arrivalAirportLat: Double!, arrivalAirportLng: Double!, airplaneModel: String!, flightTime: String!, notes: String!)
+    static func Add(flightCount: Int, airlineCompanyName: String!, date: String!, departureAirportName: String!, departureAirportLat: Double!, departureAirportLng: Double!, arrivalAirportName: String!, arrivalAirportLat: Double!, arrivalAirportLng: Double!, airplaneModel: String!, flightTime: String!, notes: String!)
     {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -54,7 +52,7 @@ class FlightDataLibrary: NSObject {
         }
     }
     // Load data from CoreData to Array
-    func loadArray() {
+    static func Load() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -68,7 +66,7 @@ class FlightDataLibrary: NSObject {
         // Sort TableView Descending
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         do {
-            flightData = try managedContext.fetch(fetchRequest)
+            FlightDataArray = try managedContext.fetch(fetchRequest)
             print("Array loaded successfully from CoreData")
         }catch let error as NSError {
             print("Could not load array from CoreData. \(error), \(error.userInfo)")
@@ -76,7 +74,8 @@ class FlightDataLibrary: NSObject {
     }
     
     // Update values to CoreData
-    func updateCoreData (index: Int, airlineCompanyName: String!, date: String!, departureAirportName: String!, departureAirportLat: Double!, departureAirportLng: Double!, arrivalAirportName: String!, arrivalAirportLat: Double!, arrivalAirportLng: Double!, airplaneModel: String!, flightTime: String!, notes: String!) {
+    static func Update (index: Int, airlineCompanyName: String!, date: String!, departureAirportName: String!, departureAirportLat: Double!, departureAirportLng: Double!, arrivalAirportName: String!, arrivalAirportLat: Double!, arrivalAirportLng: Double!, airplaneModel: String!, flightTime: String!, notes: String!) {
+        
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return

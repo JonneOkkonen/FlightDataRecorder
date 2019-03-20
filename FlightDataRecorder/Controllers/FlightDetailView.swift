@@ -43,25 +43,32 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         // Setup View for correct mode
         switch mode {
         case "add":
-            configureViewForAdd() // ConfigureView for adding flight
-            detailViewTitle.title = "New flight" // Set ViewController Title
+            // ConfigureView for adding flight
+            configureViewForAdd()
+            // Set ViewController Title
+            detailViewTitle.title = "New flight"
             // Print flightCount value to label
-            flightCount.text = String(format: "%04d", Database.flightData.count + 1)
+            flightCount.text = String(format: "%04d", Database.FlightDataArray.count + 1)
         case "edit":
-            actionButton.title = "Edit" // Change button title to Edit
-            configureViewForEdit() // ConfigureView for editing flight
-            ConfigureMapView() // Configure MapView
+            // Change button title to Edit
+            actionButton.title = "Edit"
+            // ConfigureView for editing flight
+            configureViewForEdit()
+            // Configure MapView
+            ConfigureMapView()
         default:
-            actionButton.title = "Edit" // Change button title to Edit
+            // Change button title to Edit
+            actionButton.title = "Edit"
         }
-        mapKitView.layer.cornerRadius = 5 // Change mapKitView corner radius
+        // Change mapKitView corner radius
+        mapKitView.layer.cornerRadius = 5
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    // Actions
+    // ACTIONS
 
     // Change enabled status from textfields with edit-button
     @IBAction func actionButton(_ sender: Any) {
@@ -80,10 +87,10 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
                 notes.isEditable = false
                 
                 // Ask user to if he want's to save changes
-                let checkAirport = UIAlertController(title: "Notification", message: "Would you like to save changes?", preferredStyle: UIAlertControllerStyle.alert)
+                let checkAirport = UIAlertController(title: "Notification", message: "Would you like to save changes?", preferredStyle: UIAlertController.Style.alert)
                 checkAirport.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                     print("SaveChangesChecker: Yes")
-                    self.saveChanges()
+                    self.SaveChanges()
                 }))
                 checkAirport.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
                     print("SaveChangesChecker: No")
@@ -104,7 +111,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         }
         // Add Flight Mode
         if(mode == "add") {
-            addFlight()
+            AddFlight()
         }
     }
     
@@ -113,12 +120,12 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         self.view.endEditing(true)
     }
     
-    // ViewSetup
+    // VIEW SETUP
     
     // When starting FlightTime editing bring timePicker instead of normal keyboard
     @IBAction func flightTimeEditing(_ sender: UITextField) {
         let timePicker:UIDatePicker = UIDatePicker()
-        timePicker.datePickerMode = UIDatePickerMode.countDownTimer
+        timePicker.datePickerMode = UIDatePicker.Mode.countDownTimer
         sender.inputView = timePicker
         timePicker.addTarget(self, action: #selector(timePickerValueChanged(sender:)), for: .valueChanged)
     }
@@ -136,7 +143,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     // When starting Date editing bring datepicker instead of normal keyboard
     @IBAction func dateEditing(_ sender: UITextField) {
         let datePicker:UIDatePicker = UIDatePicker()
-        datePicker.datePickerMode = UIDatePickerMode.date
+        datePicker.datePickerMode = UIDatePicker.Mode.date
         sender.inputView = datePicker
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
     }
@@ -160,21 +167,22 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         getAirportCoordinates(airportName: arrivalAirport.text!, airport: "arrival")
     }
     
+    // Configure View for Editing Flight
     func configureViewForEdit() {
-        let flightDataArray = Database.flightData[(indexPath.row)] // Variable for flightDataArray
+        let flightDataArray = Database.FlightDataArray[(indexPath.row)] // Variable for flightDataArray
         
         // Get Data from CoreData to variables
-        _departureAirport = flightDataArray.value(forKeyPath: "departureAirportName") as! String
-        departureAirportLat = flightDataArray.value(forKeyPath: "departureAirportLat") as! Double
-        departureAirportLng = flightDataArray.value(forKeyPath: "departureAirportLng") as! Double
-        _arrivalAirport = flightDataArray.value(forKeyPath: "arrivalAirportName") as! String
-        arrivalAirportLat = flightDataArray.value(forKeyPath: "arrivalAirportLat") as! Double
-        arrivalAirportLng = flightDataArray.value(forKeyPath: "arrivalAirportLng") as! Double
+        _departureAirport = flightDataArray.value(forKeyPath: "departureAirportName") as? String
+        departureAirportLat = flightDataArray.value(forKeyPath: "departureAirportLat") as? Double
+        departureAirportLng = flightDataArray.value(forKeyPath: "departureAirportLng") as? Double
+        _arrivalAirport = flightDataArray.value(forKeyPath: "arrivalAirportName") as? String
+        arrivalAirportLat = flightDataArray.value(forKeyPath: "arrivalAirportLat") as? Double
+        arrivalAirportLng = flightDataArray.value(forKeyPath: "arrivalAirportLng") as? Double
         arrayIndex = indexPath.row
         
         // Get Data from CoreData to Fields
-        detailViewTitle.title = "Flight " + String(format: "%04d", Database.flightData.count - (indexPath.row))
-        flightCount.text = String(format: "%04d", Database.flightData.count - (indexPath.row))
+        detailViewTitle.title = "Flight " + String(format: "%04d", Database.FlightDataArray.count - (indexPath.row))
+        flightCount.text = String(format: "%04d", Database.FlightDataArray.count - (indexPath.row))
         date.text = flightDataArray.value(forKeyPath: "date") as? String
         airlineCompanyName.text = flightDataArray.value(forKeyPath: "airlineCompanyName") as? String
         aircraftModel.text = flightDataArray.value(forKeyPath: "aircraftModel") as? String
@@ -184,6 +192,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         notes.text = flightDataArray.value(forKeyPath: "notes") as? String
     }
     
+    // Configure View for Adding Flight
     func configureViewForAdd() {
         actionButton.title = "Save" // Change button title to Save
         // Change Textfields Enabled state to true
@@ -196,8 +205,9 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
         notes.isEditable = true
     }
     
-    // MapView
+    // MAPVIEW
     
+    // Configure MapView
     func ConfigureMapView() {
         // MapView Configure
         mapKitView.delegate = self
@@ -247,7 +257,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
             points.append(sourceCoordinates) // Add Source coordinates to array
             points.append(destCoordinates) // Add Destination coordinates to array
             let polyline = MKPolyline(coordinates: &points, count: points.count) // Draw polyline
-            mapKitView.add(polyline) // Add polyline to map
+            mapKitView.addOverlay(polyline) // Add polyline to map
         }
         
         // Zoom view to fit both points
@@ -273,7 +283,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
             print("Airport: \(airport) Lat: \(lat!), Lon: \(lng!)")
             
             // Ask user to check airport location
-            let checkAirport = UIAlertController(title: "Is the airport location correct?", message: "\(airportName)\nLat: \(lat!)\n Lng: \(lng!)", preferredStyle: UIAlertControllerStyle.alert)
+            let checkAirport = UIAlertController(title: "Is the airport location correct?", message: "\(airportName)\nLat: \(lat!)\n Lng: \(lng!)", preferredStyle: UIAlertController.Style.alert)
             checkAirport.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                 print("AirportChecker: Yes")
                 if airport == "arrival" {
@@ -318,29 +328,29 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
     // CoreData
     
     // Update values to CoreData
-    func saveChanges() {
+    func SaveChanges() {
         // Check that fields are filled
         if (airlineCompanyName.text != "" && aircraftModel.text != "" && date.text != "" &&
             departureAirport.isEnabled == false && arrivalAirport.isEnabled == false &&
             flightTime.text != "" && notes.text != "") {
                     // Save Changes to CoreData
-                    Database.updateCoreData(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
+                    Database.Update(index: arrayIndex, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
         }else {
-            Notifications.alertView(message: "Fill all fields before saving", context: self)
+            Notifications.Alert(message: "Fill all fields before saving", context: self)
         }
     }
     
     // Add flight to CoreData
-    func addFlight() {
+    func AddFlight() {
         if (airlineCompanyName.text != "" && aircraftModel.text != "" && date.text != "" && departureAirport.isEnabled == false &&
             arrivalAirport.isEnabled == false && flightTime.text != "" && notes.text != "") {
-            Database.addFlight(flightCount: Int(flightCount.text!)!, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
+            Database.Add(flightCount: Int(flightCount.text!)!, airlineCompanyName: airlineCompanyName.text, date: date.text, departureAirportName: departureAirport.text, departureAirportLat: departureAirportLat, departureAirportLng: departureAirportLng, arrivalAirportName: arrivalAirport.text, arrivalAirportLat: arrivalAirportLat, arrivalAirportLng: arrivalAirportLng, airplaneModel: aircraftModel.text, flightTime: flightTime.text, notes: notes.text)
             
             // Notify user that flight was saved successfully and Empty all fields
-            let checkAirport = UIAlertController(title: "Action", message: "Flight was successfully added.", preferredStyle: UIAlertControllerStyle.alert)
+            let checkAirport = UIAlertController(title: "Action", message: "Flight was successfully added.", preferredStyle: UIAlertController.Style.alert)
             checkAirport.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action: UIAlertAction!) in
-                Database.loadArray()
-                let count = Database.flightData.count + 1
+                Database.Load()
+                let count = Database.FlightDataArray.count + 1
                 self.flightCount.text = String(format: "%04d", count)
                 self.airlineCompanyName.text = ""
                 self.aircraftModel.text = ""
@@ -362,7 +372,7 @@ class FlightDetailView: UIViewController, MKMapViewDelegate, CLLocationManagerDe
             }))
             present(checkAirport, animated: true, completion: nil)
         }else {
-            Notifications.alertView(message: "Fill all fields before saving", context: self)
+            Notifications.Alert(message: "Fill all fields before saving", context: self)
         }
     }
 }

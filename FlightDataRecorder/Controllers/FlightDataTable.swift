@@ -28,14 +28,18 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
     // Outlets
     @IBOutlet weak var flightCountLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        Database.loadArray() // Load data from Core Data
-        tableView.reloadData() // Reload tableView Data
-        tableView.separatorStyle = .none // Remove seperatorLine
-        flightCountLabel.text = String(format: "%04d", Database.flightData.count) // Flight Count
-        self.navigationController?.navigationBar.prefersLargeTitles = true // Prefer Large Titles
+        // Load data from Core Data
+        Database.Load()
+        // Reload tableView Data
+        tableView.reloadData()
+        // Remove seperatorLine
+        tableView.separatorStyle = .none
+        // Update Flight Count
+        flightCountLabel.text = String(format: "%04d", Database.FlightDataArray.count)
+        // Prefer Large Titles
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         // Check 3D Touch Support
         if (traitCollection.forceTouchCapability == .available) {
@@ -46,9 +50,12 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        Database.loadArray() // Load data from Core Data
-        tableView.reloadData() // Reload tableView Data
-        flightCountLabel.text = String(format: "%04d", Database.flightData.count) // Flight Count
+        // Load data from Core Data
+        Database.Load()
+        // Reload tableView Data
+        tableView.reloadData()
+        // Flight Count
+        flightCountLabel.text = String(format: "%04d", Database.FlightDataArray.count)
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,7 +67,7 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
     // Number of cell's in tableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // If there is no flight data, display noDataLabel
-        if (Database.flightData.count == 0) {
+        if (Database.FlightDataArray.count == 0) {
             let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             noDataLabel.text          = "No flight data"
             noDataLabel.textColor     = UIColor.black
@@ -68,11 +75,12 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
             tableView.backgroundView  = noDataLabel
             tableView.separatorStyle  = .none
         }
-        return Database.flightData.count
+        return Database.FlightDataArray.count
     }
     
-    // Cell Content
+    // TableView Cell Content
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // TableViewCell
         let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "tableCell")! as UITableViewCell
         
         // Variables for Cell Labels
@@ -84,15 +92,14 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
         let departureAirport = tableViewCell.viewWithTag(6) as? UILabel
         let arrivalAirport = tableViewCell.viewWithTag(7) as? UILabel
         
-        // Print data to Labels
-        let data = Database.flightData[indexPath.row]
-        let departure = data.value(forKeyPath: "departureAirportName") as? String
-        let arrival = data.value(forKeyPath: "arrivalAirportName") as? String
+        // Instans for current row data in FlightDataArray
+        let data = Database.FlightDataArray[indexPath.row]
         
-        flightCount?.text = "#" + String(format: "%04d", Database.flightData.count - indexPath.row)
+        // Set data to labels
+        flightCount?.text = "#" + String(format: "%04d", Database.FlightDataArray.count - indexPath.row)
         airlineCompanyName?.text = data.value(forKeyPath: "airlineCompanyName") as? String
-        departureAirport?.text = departure
-        arrivalAirport?.text =  arrival!
+        departureAirport?.text = data.value(forKeyPath: "departureAirportName") as? String
+        arrivalAirport?.text = data.value(forKeyPath: "arrivalAirportName") as? String
         airplaneModel?.text = data.value(forKeyPath: "aircraftModel") as? String
         date?.text = data.value(forKeyPath: "date") as? String
         flightTime?.text = data.value(forKeyPath: "flightTime") as? String
@@ -106,19 +113,21 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension;
+        return UITableView.automaticDimension;
     }
     
     // Segue to DetailView
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pass flightDataDetails to FlightDetailView
         if segue.identifier == "flightDataDetails" {
+            // Cell
             let cell = sender as! UITableViewCell
-            let indexPath = tableView.indexPath(for: cell)! // IndexPath for selected row
-            let detailSegue = segue.destination as! FlightDetailView // Variable for segue destination
+            // IndexPath for selected row
+            let indexPath = tableView.indexPath(for: cell)!
+            // Variable for segue destination
+            let detailSegue = segue.destination as! FlightDetailView
             
-            // Set ViewController mode to edit and cell's indexPath
+            // Change ViewController mode to edit and cell's to indexPath
             detailSegue.mode = "edit"
             detailSegue.indexPath = indexPath
         }
@@ -126,12 +135,12 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
         // Pass flightCount to addNewFlight
         if segue.identifier == "newFlight" {
             let segue = segue.destination as! FlightDetailView // Variable for segue destination
-            // Set ViewController mode to add
+            // Change ViewController mode to add
             segue.mode = "add"
         }
     }
     
-    // 3D Touch
+    // 3D-TOUCH
     
     // Preview View
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
@@ -142,5 +151,4 @@ class FlightDataTable: UITableViewController, UIViewControllerPreviewingDelegate
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show((storyboard?.instantiateViewController(withIdentifier: "flightDetailView"))!, sender: self)
     }
-    
 }

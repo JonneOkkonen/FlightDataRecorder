@@ -11,32 +11,13 @@
 		3A308DE71F795DFC00665F71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A308DE51F795DFC00665F71 /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
 		3A308DEA1F795DFC00665F71 /* FlightDataRecorder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A308DE81F795DFC00665F71 /* FlightDataRecorder.xcdatamodeld */; };
 		3A308DEF1F795DFC00665F71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A308DED1F795DFC00665F71 /* LaunchScreen.storyboard */; };
-		3A308DFA1F795DFD00665F71 /* FlightDataRecorderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A308DF91F795DFD00665F71 /* FlightDataRecorderTests.swift */; };
-		3A308E051F795DFD00665F71 /* FlightDataRecorderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A308E041F795DFD00665F71 /* FlightDataRecorderUITests.swift */; };
 		3A308E131F795ECB00665F71 /* FlightDataTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A308E121F795ECB00665F71 /* FlightDataTable.swift */; };
 		3A4A16811F7ABD480002DBB4 /* FlightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A16801F7ABD480002DBB4 /* FlightDetailView.swift */; };
 		3A4C40C71F966B5600CF03A8 /* KeyboardLayoutConstrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C40C61F966B5600CF03A8 /* KeyboardLayoutConstrain.swift */; };
-		3A60DE6A202A21B000C0479E /* FlightDataLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A60DE69202A21B000C0479E /* FlightDataLibrary.swift */; };
+		3A60DE6A202A21B000C0479E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A60DE69202A21B000C0479E /* Database.swift */; };
 		3AB67D4A1FCF2B5200D8BED5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB67D491FCF2B5200D8BED5 /* Notifications.swift */; };
 		3AFBD0341F7ACADB009D34E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AFBD0331F7ACADB009D34E8 /* Images.xcassets */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3A308DF61F795DFD00665F71 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3A308DD61F795DFC00665F71 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3A308DDD1F795DFC00665F71;
-			remoteInfo = FlightDataRecorder;
-		};
-		3A308E011F795DFD00665F71 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3A308DD61F795DFC00665F71 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3A308DDD1F795DFC00665F71;
-			remoteInfo = FlightDataRecorder;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3A308DDE1F795DFC00665F71 /* FlightDataRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightDataRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,15 +27,11 @@
 		3A308DEE1F795DFC00665F71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A308DF01F795DFC00665F71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A308DF51F795DFD00665F71 /* FlightDataRecorderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlightDataRecorderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A308DF91F795DFD00665F71 /* FlightDataRecorderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDataRecorderTests.swift; sourceTree = "<group>"; };
-		3A308DFB1F795DFD00665F71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A308E001F795DFD00665F71 /* FlightDataRecorderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlightDataRecorderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A308E041F795DFD00665F71 /* FlightDataRecorderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDataRecorderUITests.swift; sourceTree = "<group>"; };
-		3A308E061F795DFD00665F71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A308E121F795ECB00665F71 /* FlightDataTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDataTable.swift; sourceTree = "<group>"; };
 		3A4A16801F7ABD480002DBB4 /* FlightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlightDetailView.swift; path = FlightDataRecorder/Controllers/FlightDetailView.swift; sourceTree = SOURCE_ROOT; };
 		3A4C40C61F966B5600CF03A8 /* KeyboardLayoutConstrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstrain.swift; sourceTree = "<group>"; };
-		3A60DE69202A21B000C0479E /* FlightDataLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightDataLibrary.swift; sourceTree = "<group>"; };
+		3A60DE69202A21B000C0479E /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		3AB67D491FCF2B5200D8BED5 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		3AFBD0331F7ACADB009D34E8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,8 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				3A308DE01F795DFC00665F71 /* FlightDataRecorder */,
-				3A308DF81F795DFD00665F71 /* FlightDataRecorderTests */,
-				3A308E031F795DFD00665F71 /* FlightDataRecorderUITests */,
 				3A308DDF1F795DFC00665F71 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,24 +92,6 @@
 			path = FlightDataRecorder;
 			sourceTree = "<group>";
 		};
-		3A308DF81F795DFD00665F71 /* FlightDataRecorderTests */ = {
-			isa = PBXGroup;
-			children = (
-				3A308DF91F795DFD00665F71 /* FlightDataRecorderTests.swift */,
-				3A308DFB1F795DFD00665F71 /* Info.plist */,
-			);
-			path = FlightDataRecorderTests;
-			sourceTree = "<group>";
-		};
-		3A308E031F795DFD00665F71 /* FlightDataRecorderUITests */ = {
-			isa = PBXGroup;
-			children = (
-				3A308E041F795DFD00665F71 /* FlightDataRecorderUITests.swift */,
-				3A308E061F795DFD00665F71 /* Info.plist */,
-			);
-			path = FlightDataRecorderUITests;
-			sourceTree = "<group>";
-		};
 		3A4A167F1F7976990002DBB4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,7 +104,7 @@
 		3A60DE68202A20BB00C0479E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3A60DE69202A21B000C0479E /* FlightDataLibrary.swift */,
+				3A60DE69202A21B000C0479E /* Database.swift */,
 				3A308DE11F795DFC00665F71 /* AppDelegate.swift */,
 				3AB67D491FCF2B5200D8BED5 /* Notifications.swift */,
 				3A4C40C61F966B5600CF03A8 /* KeyboardLayoutConstrain.swift */,
@@ -198,7 +155,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3A308DF71F795DFD00665F71 /* PBXTargetDependency */,
 			);
 			name = FlightDataRecorderTests;
 			productName = FlightDataRecorderTests;
@@ -219,7 +175,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3A308E021F795DFD00665F71 /* PBXTargetDependency */,
 			);
 			name = FlightDataRecorderUITests;
 			productName = FlightDataRecorderUITests;
@@ -241,17 +196,16 @@
 				TargetAttributes = {
 					3A308DDD1F795DFC00665F71 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					3A308DF41F795DFD00665F71 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 3A308DDD1F795DFC00665F71;
 					};
 					3A308DFF1F795DFD00665F71 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 3A308DDD1F795DFC00665F71;
 					};
 				};
 			};
@@ -412,7 +366,7 @@
 				3AB67D4A1FCF2B5200D8BED5 /* Notifications.swift in Sources */,
 				3A4A16811F7ABD480002DBB4 /* FlightDetailView.swift in Sources */,
 				3A308DE21F795DFC00665F71 /* AppDelegate.swift in Sources */,
-				3A60DE6A202A21B000C0479E /* FlightDataLibrary.swift in Sources */,
+				3A60DE6A202A21B000C0479E /* Database.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +374,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A308DFA1F795DFD00665F71 /* FlightDataRecorderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,24 +381,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A308E051F795DFD00665F71 /* FlightDataRecorderUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3A308DF71F795DFD00665F71 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3A308DDD1F795DFC00665F71 /* FlightDataRecorder */;
-			targetProxy = 3A308DF61F795DFD00665F71 /* PBXContainerItemProxy */;
-		};
-		3A308E021F795DFD00665F71 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3A308DDD1F795DFC00665F71 /* FlightDataRecorder */;
-			targetProxy = 3A308E011F795DFD00665F71 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3A308DE51F795DFC00665F71 /* Main.storyboard */ = {
@@ -585,11 +524,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DR7LW47852;
 				INFOPLIST_FILE = FlightDataRecorder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonneokkonen.FlightDataRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -601,11 +540,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DR7LW47852;
 				INFOPLIST_FILE = FlightDataRecorder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonneokkonen.FlightDataRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -614,7 +553,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DR7LW47852;
 				INFOPLIST_FILE = FlightDataRecorderTests/Info.plist;
@@ -623,7 +561,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlightDataRecorder.app/FlightDataRecorder";
 			};
 			name = Debug;
 		};
@@ -631,7 +568,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DR7LW47852;
 				INFOPLIST_FILE = FlightDataRecorderTests/Info.plist;
@@ -640,7 +576,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlightDataRecorder.app/FlightDataRecorder";
 			};
 			name = Release;
 		};
@@ -654,9 +589,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonneokkonen.FlightDataRecorderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FlightDataRecorder;
 			};
 			name = Debug;
 		};
@@ -670,9 +605,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonneokkonen.FlightDataRecorderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FlightDataRecorder;
 			};
 			name = Release;
 		};
